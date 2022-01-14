@@ -1,0 +1,17 @@
+# == Schema Information
+#
+# Table name: recharge_fidelity_cards
+#
+#  id         :bigint           not null, primary key
+#  uid        :string
+#  amount     :float
+#  status     :string
+#  account_id :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+class RechargeFidelityCardSerializer < ActiveModel::Serializer
+  attributes :id, :uid, :amount, :status
+  has_one :account
+end

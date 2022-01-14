@@ -1,0 +1,16 @@
+<% if current_account.role.name == "Superuser" %>
+		<%= render "dashboard/partials/superuser-dashboard" %>
+	
+	
+	
+	<% elsif current_user.admin? %>
+		<%= render "dashboard/partials/superuser-dashboard" %>
+	<% elsif current_user.user? %>
+		<%= render "dashboard/partials/user-dashboard" %>
+	
+
+
+<% end %>
+
+
+

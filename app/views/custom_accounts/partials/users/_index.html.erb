@@ -1,0 +1,44 @@
+<div class="headers">
+    <div class="left-content">
+    </div>
+
+    <div class="right-content">
+        <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), new_user_path, class: "c-btn c-btn--info", remote: true %>
+
+    </div>
+
+</div>
+
+<div class="ddd">
+<table id="datatable1" class="table display responsive nowrap">
+   
+    <thead >
+        <tr >
+            <th >Email</th>
+            <th >Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        
+        <% @users.each do |user| %>
+        
+            <tr >
+                <td ><%= user.email %></td>
+                <td>
+					<div class="action-buttons">
+					<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'), edit_user_path(user), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), delete_user_path(user), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+</div>

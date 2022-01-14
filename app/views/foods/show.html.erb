@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @food.uid %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @food.slug %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @food.name %>
+</p>
+
+<p>
+  <strong>Min cooking time:</strong>
+  <%= @food.min_cooking_time %>
+</p>
+
+<p>
+  <strong>Max cooking time:</strong>
+  <%= @food.max_cooking_time %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @food.price %>
+</p>
+
+<p>
+  <strong>Descriptions:</strong>
+  <%= @food.descriptions %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @food.status %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @food.account %>
+</p>
+
+<%= link_to 'Edit', edit_food_path(@food) %> |
+<%= link_to 'Back', foods_path %>

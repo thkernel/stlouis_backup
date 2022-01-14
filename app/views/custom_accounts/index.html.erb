@@ -1,0 +1,50 @@
+<div class="br-pageheader">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+        <a class="breadcrumb-item" href="index.html">Bracket</a>
+        <a class="breadcrumb-item" href="#">UI ELements</a>
+        <span class="breadcrumb-item active">Modal</span>
+      </nav>
+    </div><!-- br-pageheader -->
+<div class="br-pagebody">
+<div class="br-section-wrapper">
+<div class="row">
+    <div class="col-xl-12">
+        <div class="c-tabs"> 
+            <!-- Tabs header -->
+            <nav class="c-tabs__list nav nav-tabs" id="myTab" role="tablist">
+            
+                <a class="c-tabs__link nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
+                    Utilisateurs
+                </a>
+                <a class="c-tabs__link nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+                    Rôles
+                </a>
+                <a class="c-tabs__link nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
+                Permissions
+                </a>
+            </nav>
+            
+            <!-- Tabs content -->
+            <div class="c-tabs__content tab-content" id="nav-tabContent">
+                <div class="c-tabs__pane tab-pane active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    
+                    
+                   
+                        <%= render "custom_users/partials/users/index" %>
+                    
+                </div>
+                <div class="c-tabs__pane tab-pane" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    
+                        <%= render "custom_users/partials/roles/index" %>
+                   
+                </div>
+                <div class="c-tabs__pane tab-pane" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                optio, laborum enim ipsum dolorum, voluptatem ducimus quam fuga, vero atque, error laboriosam odio provident eveniet nemo reicienoptio, laborum enim ipsum dolorum, voluptatem ducimus quam fuga, vero atque, error laboriosam odio provident eveniet nemo reicien
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div id="user-modal" class="modal fade" data-backdrop="static"></div>
