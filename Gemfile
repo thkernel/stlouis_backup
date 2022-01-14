@@ -83,22 +83,22 @@ gem 'remotipart', '~> 1.4', '>= 1.4.2'
 gem 'client_side_validations', '~> 14.1'
 gem 'action_mailer_auto_url_options', '~> 1.0', '>= 1.0.2'
 gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.2'
-gem 'kaminari', '~> 1.1', '>= 1.1.1'
-gem 'chosen-rails', '~> 1.8', '>= 1.8.7'
+#gem 'kaminari', '~> 1.1', '>= 1.1.1'
+#gem 'chosen-rails', '~> 1.8', '>= 1.8.7'
 #gem 'apartment', '~> 2.2'
 gem 'chartkick', '~> 3.0', '>= 3.0.2'
 gem 'cocoon', '~> 1.2', '>= 1.2.12'
 #gem 'ckeditor', '~> 5.0'
-gem 'ckeditor', github: 'galetahub/ckeditor'
-gem 'social-share-button', '~> 1.2', '>= 1.2.1'
+#gem 'ckeditor', github: 'galetahub/ckeditor'
+#gem 'social-share-button', '~> 1.2', '>= 1.2.1'
 gem 'sanitize', '~> 5.1'
 gem 'creek', '~> 2.2'
 gem 'pg_search', '~> 2.3'
-gem 'cookies_eu', '~> 1.7', '>= 1.7.5'
+#gem 'cookies_eu', '~> 1.7', '>= 1.7.5'
 gem 'countries', require: 'countries/global'
 gem 'recaptcha', '~> 5.5'
 gem 'autoprefixer-rails', '~> 9.8', '>= 9.8.6.5'
-gem 'meta-tags', '~> 2.13' # For SEO
+#gem 'meta-tags', '~> 2.13' # For SEO
 gem 'breadcrumbs_on_rails', '~> 4.0' # For SEO
 
 gem 'execjs', '~> 2.7.0' #To fix ExecJS::ProgramError on a new Rails 5.2
