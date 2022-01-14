@@ -28,8 +28,11 @@ class Product < ApplicationRecord
 
   belongs_to :product_category
   belongs_to :provider
+  belongs_to :unity
   belongs_to :account
 
+
+  validates :name, presence: true, uniqueness: true
 
 	# Change default params ID to uid
   def to_param

@@ -2,21 +2,9 @@ module ApplicationHelper
 	# Include all helpers
 	
 
-    def resource_name
-	    :user
-	end
-
-	def resource
-	    @resource ||= User.new
-	end
+    
 	
-	def resource_class
-		User
-	end
 	
-	def devise_mapping
-	    @devise_mapping ||= Devise.mappings[:user]
-	end
 
 
 	def get_tenant_status?(subdomain)
@@ -56,8 +44,8 @@ module ApplicationHelper
 		end
 	end
 
-	def get_user(user_id)
-		user = User.find(user_id)
+	def get_account(acount_id)
+		account = Account.find(user_id)
 	end
 
 	def poll_thumbnail(poll)
@@ -158,8 +146,8 @@ module ApplicationHelper
 
 
 
-	def is_account_locked?(user)
-		if user.status == 'enable'
+	def is_account_locked?(account)
+		if account.status == 'enable'
 			false
 		else
 			true

@@ -27,7 +27,7 @@
       <div class="col-md-6">
          <div class="form-group">
           <%= form.label :provider_id, "Fournisseur"  %>
-          <%= form.collection_select(:provider_id, @providers, :id, :name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+          <%= form.collection_select(:provider_id, @providers, :id, :full_name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
 
         </div>
 

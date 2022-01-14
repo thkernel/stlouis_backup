@@ -24,7 +24,7 @@ class FoodCategoriesController < ApplicationController
 
   # POST /food_categories or /food_categories.json
   def create
-    @food_category = current_acount.food_categories.build(food_category_params)
+    @food_category = current_account.food_categories.build(food_category_params)
 
     respond_to do |format|
       if @food_category.save
@@ -45,6 +45,7 @@ class FoodCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @food_category.update(food_category_params)
+         @food_categories = FoodCategory.all
         format.html { redirect_to food_category_url(@food_category), notice: "Food category was successfully updated." }
         format.json { render :show, status: :ok, location: @food_category }
         format.js
@@ -57,7 +58,7 @@ class FoodCategoriesController < ApplicationController
   end
 
   def delete
-    @food_category = FoodCategory.find(params[:food_category_id])
+    @food_category = FoodCategory.find_by(uid: params[:food_category_id])
   end
 
   # DELETE /food_categories/1 or /food_categories/1.json
@@ -73,7 +74,7 @@ class FoodCategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_food_category
-      @food_category = FoodCategory.find(params[:id])
+      @food_category = FoodCategory.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

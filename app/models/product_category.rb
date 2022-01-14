@@ -21,6 +21,9 @@ class ProductCategory < ApplicationRecord
 
   belongs_to :account
 
+  validates :name, presence: true, uniqueness: true
+
+
 
 	# Change default params ID to uid
   def to_param

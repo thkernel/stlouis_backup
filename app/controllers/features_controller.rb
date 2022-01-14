@@ -1,7 +1,7 @@
 class FeaturesController < ApplicationController
   authorize_resource
   
-  before_action :authenticate_user!
+  before_action :authenticate_account!
   before_action :set_feature, only: [:show, :edit, :update, :destroy]
   layout "dashboard"
 

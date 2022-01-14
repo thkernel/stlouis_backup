@@ -24,7 +24,7 @@ class ProductCategoriesController < ApplicationController
 
   # POST /product_categories or /product_categories.json
   def create
-    @product_category = current_acount.product_Categories.build(product_category_params)
+    @product_category = current_account.product_categories.build(product_category_params)
 
     respond_to do |format|
       if @product_category.save
@@ -44,6 +44,7 @@ class ProductCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @product_category.update(product_category_params)
+        @product_categories = ProductCategory.all
         format.html { redirect_to product_category_url(@product_category), notice: "Product category was successfully updated." }
         format.json { render :show, status: :ok, location: @product_category }
         format.js
@@ -56,7 +57,7 @@ class ProductCategoriesController < ApplicationController
   end
 
   def delete
-    @product_category = ProductCategory.find(params[:product_category_id])
+    @product_category = ProductCategory.find_by(uid: params[:product_category_id])
   end
 
   # DELETE /product_categories/1 or /product_categories/1.json
@@ -72,7 +73,7 @@ class ProductCategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product_category
-      @product_category = ProductCategory.find(params[:id])
+      @product_category = ProductCategory.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

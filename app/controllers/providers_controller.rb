@@ -24,15 +24,18 @@ class ProvidersController < ApplicationController
 
   # POST /providers or /providers.json
   def create
-    @provider = Provider.new(provider_params)
+    @provider = current_account.providers.build(provider_params)
 
     respond_to do |format|
       if @provider.save
+        @providers = Provider.all
         format.html { redirect_to provider_url(@provider), notice: "Provider was successfully created." }
         format.json { render :show, status: :created, location: @provider }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @provider.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -41,15 +44,21 @@ class ProvidersController < ApplicationController
   def update
     respond_to do |format|
       if @provider.update(provider_params)
+        @providers = Provider.all
         format.html { redirect_to provider_url(@provider), notice: "Provider was successfully updated." }
         format.json { render :show, status: :ok, location: @provider }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @provider.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
 
+  def delete
+      @provider = Provider.find_by(uid: params[:provider_id])
+    end
   # DELETE /providers/1 or /providers/1.json
   def destroy
     @provider.destroy
@@ -63,7 +72,7 @@ class ProvidersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_provider
-      @provider = Provider.find(params[:id])
+      @provider = Provider.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

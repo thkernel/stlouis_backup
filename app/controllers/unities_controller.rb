@@ -24,15 +24,18 @@ class UnitiesController < ApplicationController
 
   # POST /unities or /unities.json
   def create
-    @unity = Unity.new(unity_params)
+    @unity = current_account.unities.build(unity_params)
 
     respond_to do |format|
       if @unity.save
+        @unities = Unity.all
         format.html { redirect_to unity_url(@unity), notice: "Unity was successfully created." }
         format.json { render :show, status: :created, location: @unity }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @unity.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -41,15 +44,21 @@ class UnitiesController < ApplicationController
   def update
     respond_to do |format|
       if @unity.update(unity_params)
+        @unities = Unity.all
         format.html { redirect_to unity_url(@unity), notice: "Unity was successfully updated." }
         format.json { render :show, status: :ok, location: @unity }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @unity.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
 
+  def delete
+      @unity = Unity.find_by(uid: params[:unity_id])
+    end
   # DELETE /unities/1 or /unities/1.json
   def destroy
     @unity.destroy
@@ -63,11 +72,11 @@ class UnitiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_unity
-      @unity = Unity.find(params[:id])
+      @unity = Unity.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def unity_params
-      params.require(:unity).permit(:uid, :name, :decription, :status, :account_id)
+      params.require(:unity).permit(:name, :decription)
     end
 end

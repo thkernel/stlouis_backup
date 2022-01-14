@@ -11,27 +11,76 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :reference %>
-    <%= form.text_field :reference, id: :order_reference %>
+  <div class="row">
+    <div class="col-md-6">
+
+      <div class="form-group">
+        <%= form.label :customer_id, "Client", class: "required" %>
+        <%= form.collection_select(:customer_id, @customers, :id, :full_name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+      </div>
+
+
+  
+
+    </div>
+
+    <div class="col-md-6">
+
+      <div class="form-group">
+        <%= form.label :table_id %>
+        <%= form.collection_select(:table_id, @tables, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+      </div>
+
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :customer_id %>
-    <%= form.text_field :customer_id, id: :order_customer_id %>
-  </div>
+      
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status, id: :order_status %>
-  </div>
+  <!-- Fieldset informations -->
+  <fieldset>
+    <legend>Liste des plats</legend>
+    <div class="row">
+      <div class="prescription-items">
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :order_user_id %>
-  </div>
+        <table class="table  responsive ">
+          <thead>
+            <tr role="row">
+              <th>Plat</th>
+              <th>P.U</th>
+              <th>Quanité</th>
+              <th>Montant</th>
+              
+              
+            </tr>
+          </thead>
+          <tbody class="items">
+            <%= form.fields_for :order_items do |item| %>
+                <%= render 'order_item_fields', f: item %>
+            <% end %>
+          </tbody>
+        </table>  
+      </div> 
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= link_to_add_association raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), form, :order_items, class: 'btn btn-primary', data: { association_insertion_node: '.items', association_insertion_method: :append } %>
+        </div>
+      </div>
+    </div>
+    
+  </fieldset>
 
-  <div class="actions">
-    <%= form.submit %>
+  
+    
+ 
+
+ 
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group pull-right">
+        <%= form.submit class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1" %>
+      </div>
+    </div>
   </div>
 <% end %>

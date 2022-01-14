@@ -18,6 +18,10 @@ class Table < ApplicationRecord
   before_save :generate_random_number_uid
 
   belongs_to :account
+  has_many :orders, dependent: :destroy
+
+  validates :name, presence: true, uniqueness: true
+
 
   def to_param
     uid

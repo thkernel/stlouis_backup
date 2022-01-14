@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_account!
+  layout "dashboard"
+
   before_action :set_order, only: %i[ show edit update destroy ]
 
   # GET /orders or /orders.json
@@ -12,11 +15,17 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
+    @customers = Customer.all
+    @tables = Table.all
+    @foods = Food.all
     @order = Order.new
   end
 
   # GET /orders/1/edit
   def edit
+    @customers = Customer.all
+    @foods = Food.all
+    @tables = Table.all
   end
 
   # POST /orders or /orders.json
@@ -65,6 +74,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:uid, :customer_id, :total_amount, :account_id, :status)
+      params.require(:order).permit(:uid, :customer_id, :table_id, order_items_attributes: [:id,  :food_id, :quantity,  :price, :amount,  :_destroy])
     end
 end

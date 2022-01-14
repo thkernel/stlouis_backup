@@ -59,7 +59,7 @@ class FoodsController < ApplicationController
   end
 
   def delete
-      @food = Food.find(params[:food_id])
+      @food = Food.find_by(uid: params[:food_id])
     end
 
   # DELETE /foods/1 or /foods/1.json
@@ -75,11 +75,11 @@ class FoodsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_food
-      @food = Food.find(params[:id])
+      @food = Food.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def food_params
-      params.require(:food).permit(:name, :min_cooking_time, :max_cooking_time, :price, :descriptions, :status)
+      params.require(:food).permit(:name, :food_category_id, :min_cooking_time, :max_cooking_time, :price, :descriptions, :status)
     end
 end

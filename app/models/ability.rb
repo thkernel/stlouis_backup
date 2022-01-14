@@ -6,17 +6,20 @@ class Ability
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
-    user ||= User.new # guest user (not logged in)
-    if user.superuser? || user.admin?
+    account ||= Account.new # guest user (not logged in)
+    if account.superuser? || account.admin?
       can :manage, :all
     else
-      user.role.permissions.each do |permission|
+      account.role.permissions.each do |permission|
         permission.permission_items.each do |permission_item|
           can permission_item.action_name.to_sym, Feature.find(permission_item.permission.feature_id).subject_class.constantize
         end
       end
        #:read, :all
     end
+
+    
+
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.

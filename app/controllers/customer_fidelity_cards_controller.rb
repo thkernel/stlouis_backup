@@ -59,7 +59,7 @@ class CustomerFidelityCardsController < ApplicationController
   end
 
   def delete
-    @customer_fidelity_card = CustomerFidelityCard.find(params[:customer_fidelity_card_id])
+    @customer_fidelity_card = CustomerFidelityCard.find_by(uid: params[:customer_fidelity_card_id])
   end
 
   # DELETE /customer_fidelity_cards/1 or /customer_fidelity_cards/1.json
@@ -75,7 +75,7 @@ class CustomerFidelityCardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer_fidelity_card
-      @customer_fidelity_card = CustomerFidelityCard.find(params[:id])
+      @customer_fidelity_card = CustomerFidelityCard.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -30,6 +30,17 @@ class Customer < ApplicationRecord
 
   belongs_to :account
   
+
+  # Get userable full name
+  #def full_name
+    #self.userable.full_name
+  #end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+  
+
   # Change default params ID to uid
   def to_param
     uid

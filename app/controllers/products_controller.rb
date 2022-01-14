@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
   end
 
   def delete
-    @product = Product.find(params[:product_id])
+    @product = Product.find_by(uid: params[:product_id])
   end
 
   # DELETE /products/1 or /products/1.json
@@ -80,11 +80,11 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:product_category_id, :name, :bar_code, :unit_price, :provider_id, :reorder_threshold, :current_stock, :description,  :status)
+      params.require(:product).permit(:product_category_id, :name, :bar_code, :unit_price, :provider_id, :reorder_threshold, :unity_id, :description,  :status)
     end
 end

@@ -57,7 +57,7 @@ class TablesController < ApplicationController
   end
 
   def delete
-    @table = Table.find(params[:table_id])
+    @table = Table.find_by(uid: params[:table_id])
   end
   # DELETE /tables/1 or /tables/1.json
   def destroy
@@ -72,7 +72,7 @@ class TablesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_table
-      @table = Table.find(params[:id])
+      @table = Table.find_by(uid: params[:uid])
     end
 
     # Only allow a list of trusted parameters through.

@@ -57,7 +57,7 @@ class CustomersController < ApplicationController
   end
 
   def delete
-      @customer = Customer.find(params[:customer_id])
+      @customer = Customer.find_by(uid: params[:customer_id])
     end
 
   # DELETE /customers/1 or /customers/1.json
@@ -73,7 +73,7 @@ class CustomersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
-      @customer = Customer.find(params[:id])
+      @customer = Customer.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

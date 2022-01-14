@@ -55,6 +55,10 @@ class RechargeFidelityCardsController < ApplicationController
     end
   end
 
+  def delete
+      @recharge_fidelity_card = RechargeFidelityCard.find_by(uid: params[:recharge_fidelity_card_id])
+    end
+
   # DELETE /recharge_fidelity_cards/1 or /recharge_fidelity_cards/1.json
   def destroy
     @recharge_fidelity_card.destroy
@@ -68,11 +72,11 @@ class RechargeFidelityCardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_recharge_fidelity_card
-      @recharge_fidelity_card = RechargeFidelityCard.find(params[:id])
+      @recharge_fidelity_card = RechargeFidelityCard.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def recharge_fidelity_card_params
-      params.require(:recharge_fidelity_card).permit(:uid, :amount, :status, :account_id)
+      params.require(:recharge_fidelity_card).permit(:fidelity_card_id, :amount)
     end
 end

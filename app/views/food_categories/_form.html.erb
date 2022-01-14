@@ -5,8 +5,8 @@
         </ul>
 
   <div class="form-group">
-    <%= form.label :name, "Nom" %>
-    <%= form.text_field :name, id: :food_category_name , class: "form-control", placeholder: "Nom"  %>
+    <%= form.label :name, "Nom", class: "required" %>
+    <%= form.text_field :name, id: :food_category_name , class: "form-control", placeholder: "Nom", required: true  %>
   </div>
 
   <div class="form-group">

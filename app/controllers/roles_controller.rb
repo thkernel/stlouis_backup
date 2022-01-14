@@ -29,11 +29,14 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.save
+        @roles = Role.all
         format.html { redirect_to role_url(@role), notice: "Role was successfully created." }
         format.json { render :show, status: :created, location: @role }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @role.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -42,14 +45,21 @@ class RolesController < ApplicationController
   def update
     respond_to do |format|
       if @role.update(role_params)
+        @roles = Role.all
         format.html { redirect_to role_url(@role), notice: "Role was successfully updated." }
         format.json { render :show, status: :ok, location: @role }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @role.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
+
+  def delete
+      @role = Role.find_by(uid: params[:role_id])
+    end
 
   # DELETE /roles/1 or /roles/1.json
   def destroy
@@ -64,7 +74,7 @@ class RolesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_role
-      @role = Role.find(params[:id])
+      @role = Role.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

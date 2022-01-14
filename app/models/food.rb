@@ -24,6 +24,9 @@ class Food < ApplicationRecord
   before_save :generate_random_number_uid
 
   belongs_to :account
+  belongs_to :food_category
+
+	validates :name, presence: true, uniqueness: true
 
 
 	# Change default params ID to uid

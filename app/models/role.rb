@@ -19,7 +19,7 @@ class Role < ApplicationRecord
 
   before_save :generate_random_number_uid
  
-    has_many :users, dependent: :destroy 
+    has_many :accounts, dependent: :destroy 
 
     validates :name, presence: true, uniqueness: true
 

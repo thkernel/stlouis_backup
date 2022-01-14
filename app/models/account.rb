@@ -60,6 +60,11 @@ class Account < ApplicationRecord
    has_many :stock_exits, dependent: :destroy
    has_many :tables, dependent: :destroy
    has_many :fidelity_cards, dependent: :destroy
+   has_many :customer_fidelity_cards, dependent: :destroy
+   has_many :recharge_fidelity_cards, dependent: :destroy
+   has_many :orders, dependent: :destroy
+
+   has_many :unities, dependent: :destroy
 
    # Change default params ID to uid
   def to_param
