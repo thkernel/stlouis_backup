@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_071026) do
     t.string "uid"
     t.bigint "order_id"
     t.bigint "food_id"
-    t.float "quantity"
+    t.float "quantity", default: 0.0
     t.float "price"
     t.float "amount"
     t.string "status"
@@ -170,9 +170,14 @@ ActiveRecord::Schema.define(version: 2022_01_13_071026) do
     t.string "uid"
     t.bigint "customer_id"
     t.bigint "table_id"
-    t.float "total_amount"
-    t.bigint "account_id"
+    t.float "subtotal", default: 0.0
+    t.float "total", default: 0.0
+    t.float "tax", default: 0.0
+    t.float "shipping", default: 0.0
     t.string "status"
+    t.string "paid"
+    t.string "payment_method"
+    t.bigint "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_orders_on_account_id"
@@ -257,12 +262,14 @@ ActiveRecord::Schema.define(version: 2022_01_13_071026) do
 
   create_table "recharge_fidelity_cards", force: :cascade do |t|
     t.string "uid"
+    t.bigint "fidelity_card_id"
     t.float "amount"
     t.string "status"
     t.bigint "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_recharge_fidelity_cards_on_account_id"
+    t.index ["fidelity_card_id"], name: "index_recharge_fidelity_cards_on_fidelity_card_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -295,6 +302,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_071026) do
     t.bigint "product_id"
     t.string "reason"
     t.float "quantity"
+    t.bigint "unity_id"
     t.text "description"
     t.string "status"
     t.bigint "account_id"
@@ -302,6 +310,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_071026) do
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_stock_entries_on_account_id"
     t.index ["product_id"], name: "index_stock_entries_on_product_id"
+    t.index ["unity_id"], name: "index_stock_entries_on_unity_id"
   end
 
   create_table "stock_exits", force: :cascade do |t|
@@ -309,6 +318,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_071026) do
     t.bigint "product_id"
     t.string "reason"
     t.float "quantity"
+    t.bigint "unity_id"
     t.text "description"
     t.string "status"
     t.bigint "account_id"
@@ -316,6 +326,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_071026) do
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_stock_exits_on_account_id"
     t.index ["product_id"], name: "index_stock_exits_on_product_id"
+    t.index ["unity_id"], name: "index_stock_exits_on_unity_id"
   end
 
   create_table "tables", force: :cascade do |t|
@@ -331,6 +342,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_071026) do
   create_table "unities", force: :cascade do |t|
     t.string "uid"
     t.string "name"
+    t.string "unity_symbol"
     t.text "decription"
     t.string "status"
     t.bigint "account_id"
@@ -374,11 +386,14 @@ ActiveRecord::Schema.define(version: 2022_01_13_071026) do
   add_foreign_key "products", "unities"
   add_foreign_key "providers", "accounts"
   add_foreign_key "recharge_fidelity_cards", "accounts"
+  add_foreign_key "recharge_fidelity_cards", "fidelity_cards"
   add_foreign_key "smtp_server_settings", "accounts"
   add_foreign_key "stock_entries", "accounts"
   add_foreign_key "stock_entries", "products"
+  add_foreign_key "stock_entries", "unities"
   add_foreign_key "stock_exits", "accounts"
   add_foreign_key "stock_exits", "products"
+  add_foreign_key "stock_exits", "unities"
   add_foreign_key "tables", "accounts"
   add_foreign_key "unities", "accounts"
 end

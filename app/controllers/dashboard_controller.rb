@@ -8,7 +8,10 @@ class DashboardController < ApplicationController
 	def index
 
 		
-		#@total_arrival_mails = ArrivalMail.count
+		@total_foods = Food.count
+		@total_customers = Customer.count
+		@total_fidelity_cards = FidelityCard.count
+		@total_orders = Order.count
 		#@total_departure_mails = DepartureMail.count
 		#@total_requests = Request.count
 		#@total_documents = Document.count

@@ -30,13 +30,16 @@ class OrdersController < ApplicationController
 
   # POST /orders or /orders.json
   def create
-    @order = Order.new(order_params)
+    @order = current_account.orders.build(order_params)
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
+        format.html { redirect_to orders_path, notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else
+        @customers = Customer.all
+    @tables = Table.all
+    @foods = Food.all
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
@@ -69,7 +72,7 @@ class OrdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.find(params[:id])
+      @order = Order.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

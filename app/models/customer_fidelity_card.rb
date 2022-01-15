@@ -16,7 +16,7 @@ class CustomerFidelityCard < ApplicationRecord
 	# Include shared utils.
   include SharedUtils::Generate
 
-  before_save :generate_random_number_uid
+  before_save :generate_random_number_uid, :set_status
   
   belongs_to :customer
   belongs_to :fidelity_card
@@ -26,5 +26,20 @@ class CustomerFidelityCard < ApplicationRecord
   def to_param
     uid
   end
+
+  def set_status
+    card = FidelityCard.find(self.fidelity_card.id)
+
+    unless self.status.present?
+      
+      self.status = "Confirmée"
+
+      if card.present?
+        card.update_column(:status, "Active")
+      end
+    end
+  end
+
+
 
 end

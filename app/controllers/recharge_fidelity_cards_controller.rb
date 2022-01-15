@@ -15,7 +15,7 @@ class RechargeFidelityCardsController < ApplicationController
 
   # GET /recharge_fidelity_cards/new
   def new
-    @fidelity_cards = FidelityCard.all
+    @fidelity_cards = FidelityCard.where(status: "Active")
     @customers = Customer.all
 
     @recharge_fidelity_card = RechargeFidelityCard.new
@@ -23,21 +23,24 @@ class RechargeFidelityCardsController < ApplicationController
 
   # GET /recharge_fidelity_cards/1/edit
   def edit
-    @fidelity_cards = FidelityCard.all
+    @fidelity_cards = FidelityCard.where(status: "Active")
     @customers = Customer.all
   end
 
   # POST /recharge_fidelity_cards or /recharge_fidelity_cards.json
   def create
-    @recharge_fidelity_card = RechargeFidelityCard.new(recharge_fidelity_card_params)
+    @recharge_fidelity_card = current_account.recharge_fidelity_cards.build(recharge_fidelity_card_params)
 
     respond_to do |format|
       if @recharge_fidelity_card.save
+        @recharge_fidelity_cards = RechargeFidelityCard.all
         format.html { redirect_to recharge_fidelity_card_url(@recharge_fidelity_card), notice: "Recharge fidelity card was successfully created." }
         format.json { render :show, status: :created, location: @recharge_fidelity_card }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @recharge_fidelity_card.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -46,11 +49,14 @@ class RechargeFidelityCardsController < ApplicationController
   def update
     respond_to do |format|
       if @recharge_fidelity_card.update(recharge_fidelity_card_params)
+        @recharge_fidelity_cards = RechargeFidelityCard.all
         format.html { redirect_to recharge_fidelity_card_url(@recharge_fidelity_card), notice: "Recharge fidelity card was successfully updated." }
         format.json { render :show, status: :ok, location: @recharge_fidelity_card }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @recharge_fidelity_card.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

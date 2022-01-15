@@ -10,7 +10,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.float :unit_price
       t.references :provider, foreign_key: true
       t.float :reorder_threshold
-      t.float :current_stock
+      t.float :current_stock, default: 0.0
       t.string :description
       t.references :account, foreign_key: true
       t.string :status

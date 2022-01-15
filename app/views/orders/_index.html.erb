@@ -1,14 +1,18 @@
 <% @orders.each do |order| %>
   <tr>
     <td><%= order.id %></td>
-    <td><%= order.created_at %></td>
+    <td><%= order.created_at.strftime("%d/%m/%Y") %></td>
     <td><%= order.customer.full_name %></td>
+    <td><%= order.table.name %></td>
+    <td><%= order.total %></td>
+    <td><%= order.paid %></td>
+    <td><%= order.payment_method %></td>
     <td><%= order.status %></td>
-    <td><%= order.total_amount %></td>
+    
     <td>
                     <div class="action-buttons">
                     <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
-'), edit_order_path(order), title: "Modifier", remote: true %>
+'), edit_order_path(order), title: "Modifier", remote: false %>
 
 
 
