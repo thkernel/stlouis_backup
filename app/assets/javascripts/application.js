@@ -61,11 +61,9 @@
 //= require js/ResizeSensor
 //= require js/dashboard
 
-//= require arrival_mails
-//= require imputations
-//= require departure_mails
-//= require custom_users
-//= require requests
+
+
+//= require orders
 
 
 $(document).on('turbolinks:load', function() {

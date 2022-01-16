@@ -70,5 +70,38 @@ class Account < ApplicationRecord
   def to_param
     uid
   end
+
+
+  def superuser?
+    if self.role.name == "Superuser"
+      true 
+    else
+      false
+    end
+  end
+  
+    def admin?
+      if self.role.name == "Administrateur"
+        true 
+      else
+        false
+      end
+    end
+  
+    def user?
+    if self.role.name == "user"
+      true 
+    else
+      false
+    end
+    end
+  
+    def guest?
+    if self.role.name == "guest"
+      true 
+    else
+      false
+    end
+    end
   
 end

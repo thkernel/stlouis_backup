@@ -4,9 +4,9 @@ class CreateOrderItems < ActiveRecord::Migration[5.2]
       t.string :uid
       t.references :order, foreign_key: true
       t.references :food, foreign_key: true
-      t.float :quantity
-      t.float :price
-      t.float :amount
+      t.float :quantity, default: 0.0
+      t.float :price, default: 0.0
+      t.float :amount, default: 0.0
       t.string :status
 
       t.timestamps

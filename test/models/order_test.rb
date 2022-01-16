@@ -2,15 +2,20 @@
 #
 # Table name: orders
 #
-#  id           :bigint           not null, primary key
-#  uid          :string
-#  customer_id  :bigint
-#  table_id     :bigint
-#  total_amount :float
-#  account_id   :bigint
-#  status       :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id             :bigint           not null, primary key
+#  uid            :string
+#  customer_id    :bigint
+#  table_id       :bigint
+#  subtotal       :float            default(0.0)
+#  total          :float            default(0.0)
+#  tax            :float            default(0.0)
+#  shipping       :float            default(0.0)
+#  status         :string
+#  paid           :string
+#  payment_method :string
+#  account_id     :bigint
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 
 require 'test_helper'

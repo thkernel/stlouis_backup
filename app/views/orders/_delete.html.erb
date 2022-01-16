@@ -10,14 +10,14 @@
         </div>
       	<div class="modal-body">
   <ul class="errors"></ul>
-  Etes-vous sûr de vouloir supprimer ce client?
+  Etes-vous sûr de vouloir supprimer cet enregistrement?
   <p>
-  Réf. carte: <b> <%= @customer_fidelity_card.fidelity_card.uid %></b>
+  Nom: <b> <%= @order.uid %></b>
   </p>
   </div>
   <div class="modal-footer">
     <%= link_to "Non", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: { dismiss: "modal" } %>
-    <%= link_to "Oui", customer_fidelity_card_path(@customer_fidelity_card), method: :delete, remote: true, class: "btn btn-danger tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1" %>
+    <%= link_to "Oui", order_path(@order), method: :delete, remote: true, class: "btn btn-danger tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1" %>
   </div>
   </div>
 </div>

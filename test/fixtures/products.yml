@@ -12,7 +12,7 @@
 #  unit_price          :float
 #  provider_id         :bigint
 #  reorder_threshold   :float
-#  current_stock       :float
+#  current_stock       :float            default(0.0)
 #  description         :string
 #  account_id          :bigint
 #  status              :string

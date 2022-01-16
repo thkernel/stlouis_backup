@@ -6,7 +6,8 @@
 #  uid         :string
 #  product_id  :bigint
 #  reason      :string
-#  quantity    :float
+#  quantity    :float            default(0.0)
+#  unity_id    :bigint
 #  description :text
 #  status      :string
 #  account_id  :bigint

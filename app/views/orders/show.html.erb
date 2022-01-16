@@ -1,24 +1,102 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Reference:</strong>
-  <%= @order.reference %>
-</p>
+<div class="br-pagebody mg-b-30 mg-t-80">
+  <div class="br-section-wrapper">
 
-<p>
-  <strong>Customer:</strong>
-  <%= @order.customer %>
-</p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @order.status %>
-</p>
+    <div class="invoice-box mt-30 mb-30">
+        <div class="actions text-center">
+            <% if unpaid?(@order) %>
+                <%= link_to "Payée maintenant", paynow_path(@order.uid), class: "btn btn-warning" %>
+            <% end %>
+    </div>
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="4">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                	<%= render 'components/logo/logo' %>
+                            </td>
+                            
+                            <td>
+                                Référence #: <%= @order.uid %><br>
+                                Crée le: <%= @order.created_at.strftime("%d/%m/%Y") %><br>
+                                Statut: <%= @order.paid %>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="information">
+                <td colspan="4">
+                    <table>
+                        <tr>
+                            <td>
+                                LE SAINT LOUIS.<br>
+                                Hamdallaye ACI 2000, Rue: 2003, porte 230<br>
+                                Bamako, MALI
+                            </td>
+                            
+                            <td>
+                                <%= @order.customer.customer_name %><br>
+                                
+                                <%= @order.customer.email %>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            
+            
+            <tr class="heading">
+                <td>
+                    Désignation
+                </td>
 
-<p>
-  <strong>User:</strong>
-  <%= @order.user %>
-</p>
+                 <td>
+                    Qté
+                </td>
+                
+                <td>
+                    P.U
+                </td>
+                <td>
+                   Montant
+                </td>
+            </tr>
+            
+            <% @order.order_items.each do |item| %>
+              <tr class="item">
+                  <td>
+                    <%= item.food.name %>
+                  </td>
+                  <td>
+                      <%= number_with_precision(item.quantity, delimiter: " ", separator: "", precision: 0) %>
+                  </td>
+                  <td>
+                      <%= number_with_precision( item.price, delimiter: " ", separator: "", precision: 0) %>
+                  </td>
+                  <td>
+                      <%= number_with_precision(item.quantity * item.price, delimiter: " ", separator: "", precision: 0) %>
+                  </td>
+              </tr>
+            <% end %>
+            
+           
+            
+            <tr class="total">
+                <td></td><td></td>
+                <td></td>
+                <td>
+                   Total: <%= "#{number_with_precision(@order.total, delimiter: " ", separator: "", precision: 0)} F CFA" %>
+                </td>
+            </tr>
+        </table>
+    </div>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+    </div>
+
+    </div>
+

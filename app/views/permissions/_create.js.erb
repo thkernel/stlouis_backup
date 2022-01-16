@@ -1,10 +1,10 @@
 $("ul.errors").html("");
-<% if @ability.errors.any? %>
-  <% @ability.errors.full_messages.each do |message| %>
+<% if @permission.errors.any? %>
+  <% @permission.errors.full_messages.each do |message| %>
     $("ul.errors").append($("<li />").html("<%= message.html_safe %>"));
   <% end %>
 <% else %>
-  $(".abilities").html("<%= escape_javascript(render 'index') %>");
-  $("#ability-modal").modal("hide");
+  $(".permissions").html("<%= escape_javascript(render 'index') %>");
+  $("#permission-modal").modal("hide");
  
 <% end %>

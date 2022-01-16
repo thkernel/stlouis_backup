@@ -1,4 +1,6 @@
 class FidelityCardsController < ApplicationController
+   authorize_resource
+   
   before_action :authenticate_account!
   layout "dashboard"
   

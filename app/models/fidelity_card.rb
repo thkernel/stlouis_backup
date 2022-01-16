@@ -15,7 +15,7 @@ class FidelityCard < ApplicationRecord
 	# Include shared utils.
   include SharedUtils::Generate
 
-  before_save :generate_random_number_uid
+  before_save :generate_random_number_uid, :set_status
 
   belongs_to :account
 
@@ -23,6 +23,12 @@ class FidelityCard < ApplicationRecord
 	# Change default params ID to uid
   def to_param
     uid
+  end
+
+  def set_status
+  	unless self.status.present?
+  		self.status = "Inactive"
+  	end
   end
   
 end

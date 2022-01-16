@@ -12,13 +12,20 @@
 #
 
 class Permission < ApplicationRecord
-	# Include shared utils.
-  include SharedUtils::Generate
+include SharedUtils::Generate
 
   before_save :generate_random_number_uid
 
-  belongs_to :feature
   belongs_to :role
+  belongs_to :feature
+  has_many :permission_items,  dependent: :destroy
+ 
+
+  # Validations.
+  #validates :name, presence: true, uniqueness: true
+
+  accepts_nested_attributes_for :permission_items ,  allow_destroy: true
+
 
 
 	# Change default params ID to uid

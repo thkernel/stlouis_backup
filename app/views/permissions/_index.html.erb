@@ -1,8 +1,8 @@
 <% @permissions.each do |permission| %>
     <tr>
-    <td><%= role(permission.role_id).name %></td>
+    <td><%= permission.role.name %></td>
    
-    <td><%= feature(permission.feature_id).name %></td>
+    <td><%= permission.feature.name %></td>
     <td>
     <% permission.permission_items.each do |item| %>
         <span class="permission-item">

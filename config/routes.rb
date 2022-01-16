@@ -51,7 +51,13 @@ Rails.application.routes.draw do
 
   resources :orders do
     get "delete"
+    collection do    
+      get "food" => "orders#food"
+    end
+    
   end
+
+  get "paynow/:uid" => "orders#paynow", as: :paynow
 
   resources :foods do
     get "delete"

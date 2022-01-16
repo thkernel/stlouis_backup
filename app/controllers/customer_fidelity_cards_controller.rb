@@ -15,14 +15,14 @@ class CustomerFidelityCardsController < ApplicationController
 
   # GET /customer_fidelity_cards/new
   def new
-    @fidelity_cards = FidelityCard.all
+    @fidelity_cards = FidelityCard.where(status: "Inactive")
     @customers = Customer.all
     @customer_fidelity_card = CustomerFidelityCard.new
   end
 
   # GET /customer_fidelity_cards/1/edit
   def edit
-    @fidelity_cards = FidelityCard.all
+     @fidelity_cards = FidelityCard.where(status: "Inactive")
     @customers = Customer.all
   end
 

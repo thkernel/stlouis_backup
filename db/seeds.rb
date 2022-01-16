@@ -21,10 +21,13 @@ unless Role.all.present?
         [
             {name: "Superuser"},
             {name: "Administrateur"},
-            {name: "Assistant"},
-            {name: "Manager"},
+            {name: "Superviseur"},
+            {name: "Gérant"},
             {name: "Caissier"},
+            {name: "Serveur"},
+            {name: "Livreur"},
             {name: "Client"},
+
             
             
         ])

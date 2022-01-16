@@ -2,6 +2,7 @@ class CreateProviders < ActiveRecord::Migration[5.2]
   def change
     create_table :providers do |t|
       t.string :uid
+      t.string :company_name
       t.string :first_name
       t.string :last_name
       t.string :civility
@@ -12,6 +13,7 @@ class CreateProviders < ActiveRecord::Migration[5.2]
       t.string :street
       t.string :po_box
       t.string :zip_code
+      t.string :email
       t.string :description
       t.string :status
       t.references :account, foreign_key: true

@@ -6,9 +6,9 @@
 #  uid        :string
 #  order_id   :bigint
 #  food_id    :bigint
-#  quantity   :float
-#  price      :float
-#  amount     :float
+#  quantity   :float            default(0.0)
+#  price      :float            default(0.0)
+#  amount     :float            default(0.0)
 #  status     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
