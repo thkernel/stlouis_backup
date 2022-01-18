@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+
+  get "orders/:id/pdf" => "orders#generate_pdf", as: :generate_pdf
+  get "orders/scan_card" => "orders#scan_card", as: :scan_card
+
+
   resources :tables , path: 'tables' do
     get "delete"
   end
@@ -48,6 +53,8 @@ Rails.application.routes.draw do
   resources :order_items do
     get "delete"
   end
+
+  #get "orders/show/:uid" => "orders#show",as: :show_order
 
   resources :orders do
     get "delete"

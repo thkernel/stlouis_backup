@@ -4,8 +4,9 @@ class OrdersController < ApplicationController
   before_action :authenticate_account!
   layout "dashboard"
 
-  before_action :set_order, only: %i[ show edit update destroy ]
-
+  #before_action :set_order, only: %i[ show edit update destroy generate_pdf ]
+  before_action :set_order, only: [:show, :edit, :update,:generate_pdf, :destroy]
+ 
   # GET /orders or /orders.json
   def index
     @orders = Order.all
@@ -13,6 +14,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1 or /orders/1.json
   def show
+    render layout: "pdf"
   end
 
   def food 
@@ -41,6 +43,30 @@ class OrdersController < ApplicationController
     @foods = Food.all
     @tables = Table.all
   end
+
+  def scan_card
+  end
+
+  #For PDF
+  def generate_pdf
+
+    puts "REQUESTS: #{@order}"
+    respond_to do |format|
+        format.html
+        format.pdf do
+            render :pdf => "commande-#{@order.uid}-#{Time.now}", 
+            layout: 'pdf',
+            page_size: 'A4',
+            template: "orders/pdf.html.erb",
+            lowquality: true,
+            zoom: 1,
+            dpi: 75
+        end
+    end
+
+    #render layout: "pdf"
+  end
+
 
   def paynow
     order = Order.find_by(uid: params[:uid])

@@ -60,6 +60,8 @@
 //= require js/bracket
 //= require js/ResizeSensor
 //= require js/dashboard
+//= require html5-qrcode.min
+//= require start-scan-qrcode
 
 
 

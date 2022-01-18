@@ -4,13 +4,18 @@
 
 
     <div class="invoice-box mt-30 mb-30">
-
-      <tr class="top">
+        <div class="actions text-center">
+            <% if unpaid?(@order) %>
+                <%= link_to "Payée maintenant", paynow_path(@order.uid), class: "btn btn-warning" %>
+            <% end %>
+    </div>
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
                 <td colspan="4">
                     <table>
                         <tr>
                             <td class="title">
-                                  <%= render 'components/logo/logo' %>
+                                	<%= render 'components/logo/logo' %>
                             </td>
                             
                             <td>
@@ -43,9 +48,6 @@
                     </table>
                 </td>
             </tr>
-        
-        <table cellpadding="0" cellspacing="0">
-            
             
             
             
