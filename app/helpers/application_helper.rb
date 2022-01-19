@@ -18,6 +18,23 @@ module ApplicationHelper
 		end
 	end
 
+	def payment?(fidelity_card, order)
+		card = Card.find(fidelity_card.id)
+		if card.present?
+			if card.balance < order.total
+				 false
+			else
+				current_balance = card.balance - order.total
+				card.update_column(:balance, current_balance);
+				order.update_column(:statut, "Payée");
+				true
+			end
+		else
+			false
+
+		end
+	end
+
 
 	def devise_title(controller)
 		if controller == "sessions"

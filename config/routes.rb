@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :api_keys
   get "orders/:id/pdf" => "orders#generate_pdf", as: :generate_pdf
   get "orders/scan_card" => "orders#scan_card", as: :scan_card
 
@@ -161,4 +162,6 @@ Rails.application.routes.draw do
   %w( 404 422 500 ).each do |code|
     get code, :to => "errors#show", :code => code
   end
+
+  mount API::Base, at: "/"
 end

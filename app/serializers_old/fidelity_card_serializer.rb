@@ -12,9 +12,6 @@
 #
 
 class FidelityCardSerializer < ActiveModel::Serializer
-  attributes :id, :uid,  :status
-  
-  belongs_to :account
-  #has_many :polls
-  
+  attributes :id, :uid, :balance, :status
+  has_one :account
 end

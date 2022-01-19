@@ -13,9 +13,8 @@
 #
 
 class CustomerFidelityCardSerializer < ActiveModel::Serializer
-  attributes :id, :uid, :customer_id, :fidelity_card_id,  :status
-  
-  belongs_to :customer
-  belongs_to :fidelity_card
-  belongs_to :account
+  attributes :id, :uid, :status
+  has_one :customer
+  has_one :fidelity_card
+  has_one :account
 end

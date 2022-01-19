@@ -19,15 +19,7 @@
 #
 
 class OrderSerializer < ActiveModel::Serializer
-  include Rails.application.routes.url_helpers
-
-  attributes :id, :uid, :customer_id, :account_id,   :status
-  
-  belongs_to :customer
-  belongs_to :account
-  has_many :order_items
-
-  
-  
-
+  attributes :id, :uid, :total_amount, :status
+  has_one :customer
+  has_one :account
 end

@@ -13,6 +13,22 @@
 #
 
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :uid, :first_name, :last_name, :sex, :status
-  has_one :role
+  attributes :id,:uid, :login, :slug ,  :role_id, :email, :full_name, :avatar_url 
+  
+  belongs_to :role
+  has_one  :profile, dependent: :destroy
+  has_many :poll_categories, dependent: :destroy
+  has_many :polls, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :votings, dependent: :destroy
+
+ 
+def full_name
+	"#{object.profile.first_name} #{object.profile.last_name}" 
+end
+
+def avatar_url
+        rails_blob_url(object.profile.avatar) if object.profile.avatar.attachment
+  end
+ 
 end

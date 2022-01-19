@@ -18,6 +18,7 @@ class FidelityCard < ApplicationRecord
   before_save :generate_random_number_uid, :set_status
 
   belongs_to :account
+  has_one :customer_fidelity_card
 
 
 	# Change default params ID to uid
