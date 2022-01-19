@@ -72,7 +72,8 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 #gem 'font-awesome-sass', '~> 5.0.13'
 
 gem 'pg', '~> 1.1', '>= 1.1.4'
-gem 'sassc', '~> 2.0', '>= 2.0.1'
+#gem 'sassc', '~> 2.0', '>= 2.0.1'
+gem 'sassc', '~> 2.4'
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 #gem 'bootstrap-sass', '~> 3.3.7'
 
@@ -134,8 +135,8 @@ group :development do
   gem 'capistrano-rails', '~> 1.3', '>= 1.3.1'
   gem 'capistrano-rails-collection', '~> 0.1.0'
   # For rvm
-  #gem 'capistrano-rvm', '~> 0.1.2'
-  gem 'capistrano-rbenv', '~> 2.2'
+  gem 'capistrano-rvm', '~> 0.1.2'
+  #gem 'capistrano-rbenv', '~> 2.2'
 
   # For puma
   gem 'capistrano3-puma', '~> 3.1', '>= 3.1.1'
