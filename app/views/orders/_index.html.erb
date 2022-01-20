@@ -2,7 +2,8 @@
   <tr>
     <td><%= order.id %></td>
     <td><%= order.created_at.strftime("%d/%m/%Y") %></td>
-    <td><%= order.customer.customer_name %></td>
+    <td><%= order.customer.last_name %></td>
+    <td><%= order.customer.first_name %></td>
     <td><%= order.table.name %></td>
     <td><%= order.total %></td>
     <td><%= order.paid %></td>

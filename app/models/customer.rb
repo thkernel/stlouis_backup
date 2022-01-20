@@ -38,7 +38,7 @@ class Customer < ApplicationRecord
 
   def customer_name
     if self.company_name.present?
-      "#{company_name}"
+     "#{company_name}"
     else
       "#{last_name} #{first_name}"
     end
