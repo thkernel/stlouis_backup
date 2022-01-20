@@ -43,6 +43,7 @@ module API
 
                   end 
               else
+                
                 {status: "empty", message: "Carte non attribuée ou inactive"} 
               end
             else
