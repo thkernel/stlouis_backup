@@ -1,6 +1,16 @@
+# For subdmain.
+class SubdomainConstraint   
+  def self.matches?(request)     
+    request.subdomain.present? && request.subdomain != 'www'   
+  end 
+end 
+
 Rails.application.routes.draw do
 
 
+  resources :tenants do   
+    get "delete"
+  end
   resources :api_keys
   get "orders/:id/pdf" => "orders#generate_pdf", as: :generate_pdf
   get "orders/scan_card" => "orders#scan_card", as: :scan_card

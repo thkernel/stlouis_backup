@@ -1,6 +1,8 @@
 require_relative 'boot'
 
 require 'rails/all'
+require 'apartment/elevators/subdomain' # or 'domain', 'first_subdomain', 'host'
+
 require './lib/shared_utils/utils'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
