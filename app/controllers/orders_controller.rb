@@ -136,9 +136,25 @@ class OrdersController < ApplicationController
     end
   end
 
+
+  def get_cancel
+    @order = Order.find_by(uid: params[:uid])
+    
+  end
+
+  def post_cancel
+    @order = Order.find_by(uid: params[:uid])
+    @order.update_column(:status, "Annulée")
+
+    respond_to do |format|
+      format.html { redirect_to orders_url, notice: "Order was successfully canceled." }
+      format.json { head :no_content }
+    end
+  end
+
   def delete
       @order = Order.find_by(uid: params[:order_id])
-    end
+  end
 
   # DELETE /orders/1 or /orders/1.json
   def destroy

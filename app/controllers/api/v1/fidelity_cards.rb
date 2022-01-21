@@ -26,28 +26,39 @@ module API
             puts "CARD"
             card = FidelityCard.find_by(uid: permitted_params[:uid]) 
             
+            # If card present
             if card.present?
+
               puts "CARD UID: #{card.inspect}"
               customer_fidelity_card = card.customer_fidelity_card
               
-              if customer_fidelity_card.present? 
-                puts "customer_fidelity_card: #{customer_fidelity_card.inspect}"
-                  order = Order.where("customer_id = ? AND status = ?", customer_fidelity_card.id, "Impayée").first
-                  if order.present?
+              # If customer fidelity cardcard present
+              if customer_fidelity_card.present?
 
-                     if  payment?(card, order )
-                        {status: 'ok', order: order}
-                      else
-                        {status: 'no', message: Error}
-                      end
+                puts "CUSTOMER FIDELITY: #{customer_fidelity_card.inspect}"
+                
+                order = Order.where(customer_id: customer_fidelity_card.customer_id,   paid: "Impayée").first
+                
+                puts "ORDER: #{order.inspect}"
+                if order.present?
 
-                  end 
+                  # Payment processing
+                  if  payment?(card, order )
+                    {status: 'ok', message: "Paiement effectué avec succès!"}
+                  else
+                    {status: 'error', message: "Erreur de paiment veuillez contactez le service de gestion des cartes."}
+                  end
+                else
+                  {status: 'error', message: "Aucune commande trouvé pour ce client."}
+                end 
+
               else
                 
-                {status: "empty", message: "Carte non attribuée ou inactive"} 
+                {status: "error", message: "Carte non attribuée ou inactive"} 
               end
             else
-              {status: "empty", message: "Empty"} 
+              puts "Cette carte n'existe pas!"
+              {status: "error", message: "Cette carte n'existe pas!"} 
             end
 
           end

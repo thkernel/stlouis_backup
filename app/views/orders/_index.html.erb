@@ -22,8 +22,12 @@
       '), generate_pdf_path(order.uid, format: :pdf), remote: false, title: "Télécharger" %>
 
 
-<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
-'), order_delete_path(order.uid), remote: true, title: "Supprimer", class: "delete" %>
+<% if unconfirmed_order?(order) %>
+
+    <%= link_to raw('<i class="fa fa-ban" aria-hidden="true"></i>
+    '), get_cancel_path(order.uid), remote: true, title: "Annuler", class: "delete" %>
+
+<% end %>
 </div>
 </td>
   </tr>

@@ -5,6 +5,7 @@ APPLICATION_KEYWORDS = []
 GENDERS = [["Homme"], ["Femme"]]
 CIVILITIES = [["Mr"], ["Mme"], ["Mlle"]]
 CARD_STATUSES = [["Inactive"], ["Active"], ["Suspendue"]]
+#CARD_STATUSES = [["Inactive"], ["Active"], ["Suspendue"]]
 
 REGISTER_TYPES = [["Registre arrivée"], ["Registre départ"]]
 POLL_STATUSES = [["En attente"], ["En cours"], ["Suspendu"], ["Terminé"], ["Annulé"]]

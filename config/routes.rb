@@ -65,6 +65,10 @@ Rails.application.routes.draw do
     
   end
 
+  get "/orders/cancel/:uid" => "orders#get_cancel", as: :get_cancel
+  post "/orders/cancel/:uid" => "orders#post_cancel", as: :post_cancel
+
+
   get "paynow/:uid" => "orders#paynow", as: :paynow
 
   resources :foods do

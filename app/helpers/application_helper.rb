@@ -1,7 +1,7 @@
 module ApplicationHelper
 	# Include all helpers
 	
-
+	include OrdersHelper
     
 	
 	
@@ -18,23 +18,18 @@ module ApplicationHelper
 		end
 	end
 
-	def payment?(fidelity_card, order)
-		card = Card.find(fidelity_card.id)
-		if card.present?
-			if card.balance < order.total
-				 false
-			else
-				current_balance = card.balance - order.total
-				card.update_column(:balance, current_balance);
-				order.update_column(:statut, "Payée");
-				true
-			end
+	def unconfirmed_order?(order)
+		
+
+		if order.status == "En attente"
+			true 
 		else
 			false
-
+		
 		end
 	end
 
+	
 
 	def devise_title(controller)
 		if controller == "sessions"
@@ -211,154 +206,11 @@ module ApplicationHelper
 		end
 	end
 
-	def commenting_another_poll_item?(user_id, poll_item_id )
-		is_comment = false
-		poll_item = PollItem.find(poll_item_id)
-
-		if poll_item.present?
-			poll = Poll.find(poll_item.poll_id)
-			if poll.present?
-				poll_items = poll.poll_items
-
-				
-				poll_items.each do |poll_item|
-					comments = poll_item.comments
+	
 
 
-					comments.each do |comment|
-						
-						if comment.user_id == user_id && comment.poll_item_id != poll_item_id
-							is_comment = true 
-						end
+	
 
-						break if is_comment == true
-						 
-					end
-					break if is_comment == true
-					
-				end
-
-				
-			end
-		end
-
-		if is_comment == true 
-			true
-		else
-			false
-		end
-	end
-
-	def voting_another_poll_item?(user_id, poll_item_id )
-		is_voting = false
-		poll_item = PollItem.find(poll_item_id)
-
-		if poll_item.present?
-			poll = Poll.find(poll_item.poll_id)
-			if poll.present?
-				poll_items = poll.poll_items
-
-				
-				poll_items.each do |poll_item|
-					votings = poll_item.votings
-
-
-					votings.each do |voting|
-						if voting.user_id == user_id && voting.poll_item_id != poll_item_id
-						 is_voting = true 
-						end
-						break if is_voting == true
-						 
-					end
-					break if is_voting == true
-					
-				end
-
-				
-			end
-		end
-
-		if is_voting == true 
-			true
-		else
-			false
-		end
-	end
-
-
-	def commenting_current_poll_item?(user_id, poll_item_id )
-		is_comment = false
-		poll_item = PollItem.find(poll_item_id)
-
-		if poll_item.present?
-			poll = Poll.find(poll_item.poll_id)
-			if poll.present?
-				poll_items = poll.poll_items
-
-				
-				poll_items.each do |poll_item|
-					comments = poll_item.comments
-
-
-					comments.each do |comment|
-						
-						if comment.user_id == user_id && comment.poll_item_id == poll_item_id
-							is_comment = true 
-						end
-
-						break if is_comment == true
-						 
-					end
-					break if is_comment == true
-					
-				end
-
-				
-			end
-		end
-
-		if is_comment == true 
-			true
-		else
-			false
-		end
-	end
-
-	def voting_current_poll_item?(user_id, poll_item_id )
-		is_voting = false
-		poll_item = PollItem.find(poll_item_id)
-
-		if poll_item.present?
-			poll = Poll.find(poll_item.poll_id)
-			if poll.present?
-				poll_items = poll.poll_items
-
-				
-				poll_items.each do |poll_item|
-					votings = poll_item.votings
-
-
-					votings.each do |voting|
-						if voting.user_id == user_id && voting.poll_item_id == poll_item_id
-						 is_voting = true 
-						end
-						break if is_voting == true
-						 
-					end
-					break if is_voting == true
-					
-				end
-
-				
-			end
-		end
-
-		if is_voting == true 
-			true
-		else
-			false
-		end
-	end
 
 
 

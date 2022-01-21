@@ -31,6 +31,7 @@ class Customer < ApplicationRecord
   before_save :generate_random_number_uid
 
   belongs_to :account
+  has_many :orders, dependent: :destroy
   
   # Validations
   validates :company_name,   uniqueness: true
