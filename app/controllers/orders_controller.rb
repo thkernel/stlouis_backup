@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1 or /orders/1.json
   def show
-    render layout: "pdf"
+    #render layout: "pdf"
   end
 
   def food 
@@ -71,36 +71,12 @@ class OrdersController < ApplicationController
   def paynow
     order = Order.find_by(uid: params[:uid])
     respond_to do |format|
-      if  order.update_columns(paid: "Payée", status: "Validée", treator_id: current_user.id)
+      if order.update_columns(paid: "Payée", status: "Confirmée", payment_method: "Espèce" , account_id: current_account.id)
 
-        order_items = order.order_items
-
-        @total_commission = 0.0
-        @total_commercial_commission_xof = 0.0
-        @total_stockholder_employee_commission_xof = 0.0
-
-        order_items.each do |order_item|
-          product = Product.find(order_item.product_id)
-
-          user = User.find(current_user.id)
-
-          if user.commercial?
-            @total_commission += product.margin_xof * order_item.quantity
-            @total_commercial_commission_xof += product.commercial_commission_xof * order_item.quantity
-          else
-            @total_commission += product.margin_xof * order_item.quantity
-            @total_stockholder_employee_commission_xof += product.stockholder_employee_commission_xof * order_item.quantity
-          end
-        end
-
-        commission = current_user.commissions.build({order_id: order.id, commission_amount: @total_commission,
-         commercial_commission_amount: @total_commercial_commission_xof, stockholder_employee_commission_amount: @total_stockholder_employee_commission_xof })
-
-        if commission.save
-          format.html {  redirect_to orders_path, notice: 'Commande payée avec succès.' }
-        end
-     
+        format.html { redirect_to orders_path, notice: "Order was successfully created." }
+        format.json { render :show, status: :created, location: @order }
       end
+      
     end
   end
   

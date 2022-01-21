@@ -47,6 +47,8 @@ $(document).on('turbolinks:load', function(){
         var total_amount = parseFloat((price )  * parseFloat(target_value)).toFixed(2);
         $("#"+amount).val(total_amount);
     });
+
+    
 });
 
 //order_order_items_attributes_1642339613677_food_id

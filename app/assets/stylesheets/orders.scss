@@ -89,3 +89,20 @@
 .rtl table tr td:nth-child(2) {
     text-align: left;
 }
+.invoice-logo img{
+    width: 125px;
+}
+
+@media print {
+    
+    /*body.printing * { display: none; }*/
+   
+    .invoice-logo img{
+    width: 125px;
+}
+}
+
+@media screen {
+    /* Hide the special layer from the screen. */
+    #print-me { display: none; }
+}

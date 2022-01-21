@@ -158,10 +158,6 @@ $(document).on('turbolinks:load', function() {
 });
 
 
-
-
-
-
 // Ajax call.
 
 function ajaxRefresh(source, route, verb){
@@ -183,6 +179,18 @@ function ajaxRefresh(source, route, verb){
   });
 
 };
+
+$(document).on('turbolinks:load', function() {  
+  $('.print-invoice').click(function(){
+  //var sraHeader = $(".sra-header").text()
+  var sraContent = $(".invoice-box").html()    
+  var winPrint = window.open('', '', 'left=0,top=0,width=800,height=600,toolbar=0,scrollbars=0,status=0')
+      winPrint.document.write( sraContent);
+      winPrint.document.close();
+      winPrint.focus();
+      winPrint.print();
+    });
+});
 
 function ajaxFilterPost(source, route, verb){
   console.log("Source: ", source);
