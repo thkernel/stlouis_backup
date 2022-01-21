@@ -11,7 +11,7 @@ set :deploy_to, "/home/ubuntu/apps/rails/stlouis/stlouis.prod"   # the path to y
 set :rails_env, "production"
 
 #server "51.38.235.131", user: "root", roles: %w{app db web}, ssh_options: {forward_agent: true}
-server "184.72.122.55", user: "ubuntu", roles: %w{app db web}, ssh_options: {forward_agent: true}
+server "3.89.20.62", user: "ubuntu", roles: %w{app db web}, ssh_options: {forward_agent: true}
 
 set :branch, "master"
 set :port, 3041

@@ -34,7 +34,7 @@ class Customer < ApplicationRecord
   has_many :orders, dependent: :destroy
   
   # Validations
-  validates :company_name,   uniqueness: true
+  #validates :company_name,   uniqueness: true
   
 
   def customer_name

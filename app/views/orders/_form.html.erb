@@ -16,7 +16,7 @@
 
       <div class="form-group">
         <%= form.label :customer_id, "Client", class: "required" %>
-        <%= form.collection_select(:customer_id, @customers, :id, :company_name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+        <%= form.collection_select(:customer_id, @customers, :id, :customer_name, {prompt: "Sélectionner"}, class: "form-control customSelect", style: "width: 100%", required: true) %> 
       </div>
 
 
@@ -28,7 +28,7 @@
 
       <div class="form-group">
         <%= form.label :table_id %>
-        <%= form.collection_select(:table_id, @tables, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+        <%= form.collection_select(:table_id, @tables, :id, :name, {prompt: "Sélectionner"}, class: "form-control customSelect", style: "width: 100%", required: true) %> 
       </div>
 
     </div>
