@@ -6,7 +6,10 @@ class SubdomainConstraint
 end 
 
 Rails.application.routes.draw do
+  get 'search/orders' => 'search#search_orders', as: :search_orders
+  
 
+  get 'ajaxsearch' => 'search#ajaxsearch', as: :ajaxsearch
 
   resources :tenants do   
     get "delete"

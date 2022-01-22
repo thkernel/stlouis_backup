@@ -2,6 +2,7 @@
 	<% @accounts.each do |account| %>
 		<tr>
 			
+			<td><%= account.login %></td>
 			<td><%= account.email %></td>
 			<td><%= account.role.name %></td>
 			<td>

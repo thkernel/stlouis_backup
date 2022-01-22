@@ -46,6 +46,36 @@ class Order < ApplicationRecord
     order_items.collect {|order_item| order_item.valid? ? (order_item.price*order_item.quantity) : 0}.sum
   end
 
+  # Search
+    def self.search(start_date, end_date,  account)
+        
+        if  account.present?
+           
+            query = Order.order(:created_at)
+            
+            query = query.where("account_id =  ?", account) if account.present?
+           
+
+            
+            query
+        
+        else 
+            query = Order.order(:created_at)
+            #query = query.where(excercise_year_id: current_excercise)
+            #query = query.where("production_date = ? AND acte_date = ? AND bank_name = ? AND contributor_name = ? AND producer_name = ?", production_date, acte_date, bank_name, contributor_name, producer_name) if production_date.present?
+            
+            
+            query = query.where("created_at BETWEEN ? AND ? ", start_date, end_date) if start_date.present? and  end_date.present?
+            query = query.where("account_id =  ?", account) if account.present?
+           
+            
+
+            query
+        
+        end
+        
+    end
+
   private
     def set_total
       puts "SUBTOTAL: #{subtotal}"

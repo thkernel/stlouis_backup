@@ -113,6 +113,9 @@ $(document).on('turbolinks:load', function() {
       $('#requests-table').DataTable(datatable);
 });
 
+
+
+
 $(document).on('turbolinks:load', function() {
 
     $('.delete_attachment').bind('ajax:success', function() {     

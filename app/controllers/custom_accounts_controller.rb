@@ -202,14 +202,14 @@ class CustomAccountsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_account
     	puts "PARAMS: #{params.inspect}"
-      @account = Account.find_by(uid: params[:uid])
+    	@account = Account.find_by(uid: params[:uid])
       
-      puts "ACCOUNT ON SET: #{@account.inspect}"
+      	puts "ACCOUNT ON SET: #{@account.inspect}"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:email, :password,:password_confirmation, :role_id,  user_attributes: [:first_name, :last_name ])
+      params.require(:account).permit(:login, :email, :password,:password_confirmation, :role_id,  user_attributes: [:first_name, :last_name ])
     end
 
 end

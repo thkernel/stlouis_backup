@@ -12,6 +12,8 @@ class DashboardController < ApplicationController
 		@total_customers = Customer.count
 		@total_fidelity_cards = FidelityCard.count
 		@total_orders = Order.count
+
+		@orders = Order.take(10)
 		#@total_departure_mails = DepartureMail.count
 		#@total_requests = Request.count
 		#@total_documents = Document.count
