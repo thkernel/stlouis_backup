@@ -16,6 +16,7 @@
 #  account_id     :bigint
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  vip_space      :boolean          default(FALSE)
 #
 
 class Order < ApplicationRecord
@@ -27,6 +28,7 @@ class Order < ApplicationRecord
   belongs_to :customer
   belongs_to :account
   belongs_to :table, optional: :true
+  
 
   has_many :order_items, dependent: :destroy
   accepts_nested_attributes_for :order_items ,  allow_destroy: true , :reject_if => :no_order_items
@@ -37,7 +39,13 @@ class Order < ApplicationRecord
   end
 
   def no_order_items(attributes)
-   attributes[:food_id].blank?
+   if Apartment::Tenant.current == "shop"
+    
+    attributes[:product_id].blank?
+  else
+    attributes[:food_id].blank?
+
+    end
   end
 
 

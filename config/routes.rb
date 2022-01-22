@@ -6,6 +6,8 @@ class SubdomainConstraint
 end 
 
 Rails.application.routes.draw do
+  resources :order_item_drinks
+  resources :drink_types
   get 'search/orders' => 'search#search_orders', as: :search_orders
   
 
@@ -74,6 +76,7 @@ Rails.application.routes.draw do
     get "delete"
     collection do    
       get "food" => "orders#food"
+      get "product" => "orders#product"
     end
     
   end

@@ -46,23 +46,25 @@
           </ul>
         </li>
 
-        <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="fa fa-cutlery tx-20"></i>
-            <span class="menu-item-label">Plats</span>
-          </a><!-- br-menu-link -->
-          <ul class="br-menu-sub">
-            
-            <li class="sub-item">
-                <%= link_to  "Catégories", food_categories_path, class: "sub-link #{current? "active", food_categories_path}" %>
-            </li>
+        <% if !shop_tenant? %>
+          <li class="br-menu-item">
+            <a href="#" class="br-menu-link with-sub">
+              <i class="fa fa-cutlery tx-20"></i>
+              <span class="menu-item-label">Plats</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub">
+              
+              <li class="sub-item">
+                  <%= link_to  "Catégories", food_categories_path, class: "sub-link #{current? "active", food_categories_path}" %>
+              </li>
 
-            <li class="sub-item">
-                <%= link_to  "Plats", foods_path, class: "sub-link #{current? "active", foods_path}" %>
-            </li>
-             
-          </ul>
-        </li>
+              <li class="sub-item">
+                  <%= link_to  "Plats", foods_path, class: "sub-link #{current? "active", foods_path}" %>
+              </li>
+               
+            </ul>
+          </li>
+        <% end %>
 
         
 

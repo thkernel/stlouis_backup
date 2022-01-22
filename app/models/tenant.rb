@@ -5,21 +5,20 @@ Stlouis::Application.load_tasks
 #
 # Table name: public.tenants
 #
-#  id                   :bigint           not null, primary key
-#  uid                  :string
-#  organization_type_id :bigint
-#  organization_name    :string
-#  address              :string
-#  phone                :string
-#  country              :string
-#  city                 :string
-#  email                :string
-#  website              :string
-#  subdomain            :string
-#  status               :string
-#  user_id              :bigint
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
+#  id                :bigint           not null, primary key
+#  uid               :string
+#  organization_name :string
+#  address           :string
+#  phone             :string
+#  country           :string
+#  city              :string
+#  email             :string
+#  website           :string
+#  subdomain         :string
+#  status            :string
+#  account_id        :bigint
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 
 class Tenant < ApplicationRecord
@@ -56,8 +55,8 @@ include SharedUtils::Generate
     # Create tenant db
 	def create_tenant 
 		Apartment::Tenant.create(self.tenant_name) # Create tenant db
-        default_data(self.tenant_name) # Load default data
-        create_administrator(self.tenant_name) # Create default admin
+        #default_data(self.tenant_name) # Load default data
+        #create_administrator(self.tenant_name) # Create default admin
         
 		
 	end

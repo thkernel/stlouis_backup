@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_180322) do
+ActiveRecord::Schema.define(version: 2022_01_22_152804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,18 @@ ActiveRecord::Schema.define(version: 2022_01_21_180322) do
     t.index ["food_category_id"], name: "index_foods_on_food_category_id"
   end
 
+  create_table "order_item_drinks", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "product_id"
+    t.float "quantity"
+    t.float "unit_price"
+    t.float "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_item_drinks_on_order_id"
+    t.index ["product_id"], name: "index_order_item_drinks_on_product_id"
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.string "uid"
     t.bigint "order_id"
@@ -174,8 +186,10 @@ ActiveRecord::Schema.define(version: 2022_01_21_180322) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "product_id"
     t.index ["food_id"], name: "index_order_items_on_food_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -192,6 +206,7 @@ ActiveRecord::Schema.define(version: 2022_01_21_180322) do
     t.bigint "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "vip_space", default: false
     t.index ["account_id"], name: "index_orders_on_account_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["table_id"], name: "index_orders_on_table_id"
@@ -403,8 +418,11 @@ ActiveRecord::Schema.define(version: 2022_01_21_180322) do
   add_foreign_key "food_categories", "accounts"
   add_foreign_key "foods", "accounts"
   add_foreign_key "foods", "food_categories"
+  add_foreign_key "order_item_drinks", "orders"
+  add_foreign_key "order_item_drinks", "products"
   add_foreign_key "order_items", "foods"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
   add_foreign_key "orders", "accounts"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "tables"

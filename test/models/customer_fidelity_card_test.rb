@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: customer_fidelity_cards
+# Table name: public.customer_fidelity_cards
 #
 #  id               :bigint           not null, primary key
 #  uid              :string

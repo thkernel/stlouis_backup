@@ -28,12 +28,24 @@ class OrdersController < ApplicationController
     
   end
 
+  def product 
+    data = params[:data]
+    
+      puts "ID: #{data}"
+      product = Product.find(data)
+      puts "Product: #{product}"
+      data = {:data => product}
+      render :json => data
+    
+  end
+
 
   # GET /orders/new
   def new
     @customers = Customer.all
     @tables = Table.all
     @foods = Food.all
+    @products = Product.all
     @order = Order.new
   end
 
@@ -41,6 +53,7 @@ class OrdersController < ApplicationController
   def edit
     @customers = Customer.all
     @foods = Food.all
+    @products = Product.all
     @tables = Table.all
   end
 
@@ -150,6 +163,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:uid, :customer_id, :table_id, order_items_attributes: [:id,  :food_id, :quantity,  :price, :amount,  :_destroy])
+      params.require(:order).permit(:uid, :customer_id, :table_id, :vip_space, order_items_attributes: [:id,  :food_id, :product_id, :quantity,  :price, :amount,  :_destroy])
     end
 end

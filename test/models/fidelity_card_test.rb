@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: fidelity_cards
+# Table name: public.fidelity_cards
 #
 #  id         :bigint           not null, primary key
 #  uid        :string

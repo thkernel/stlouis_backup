@@ -6,6 +6,13 @@ module ApplicationHelper
 	
 	
 
+	def shop_tenant?
+		if Apartment::Tenant.current == "shop"
+			true
+		else
+			false
+		end
+	end
 
 	def get_tenant_status?(subdomain)
 		tenant = Tenant.find_by(name: subdomain)

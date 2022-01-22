@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: accounts
+# Table name: public.accounts
 #
 #  id                     :bigint           not null, primary key
 #  uid                    :string

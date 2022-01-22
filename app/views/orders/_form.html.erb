@@ -28,9 +28,15 @@
 
       <div class="form-group customSelect">
         <%= form.label :table_id %>
-        <%= form.collection_select(:table_id, @tables, :id, :name, {prompt: "Sélectionner"}, class: "form-control customSelect", style: "width: 100%", required: true) %> 
+        <%= form.collection_select(:table_id, @tables, :id, :name, {prompt: "Sélectionner"}, class: "form-control customSelect", style: "width: 100%") %> 
       </div>
 
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
+          <%= form.check_box :vip_space %>
+          <%= form.label "Espace VIP" %>
+      </div>
     </div>
   </div>
 
@@ -38,14 +44,14 @@
 
   <!-- Fieldset informations -->
   <fieldset>
-    <legend>Liste des plats</legend>
+    <legend>Liste des <%= shop_tenant? ? "boisons" : "plats"%> </legend>
     <div class="row">
       <div id="order-items">
 
         <table class="table  responsive ">
           <thead>
             <tr role="row">
-              <th>Plat</th>
+              <th><%= shop_tenant? ? "Boisson" : "Plat"%></th>
               <th>P.U</th>
               <th>Quanité</th>
               <th>Montant</th>

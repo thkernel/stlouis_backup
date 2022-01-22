@@ -16,6 +16,7 @@
 #  account_id     :bigint
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  vip_space      :boolean          default(FALSE)
 #
 
 require 'test_helper'

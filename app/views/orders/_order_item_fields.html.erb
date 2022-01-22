@@ -1,9 +1,18 @@
 <tr class="nested-fields">
 
-    <td>
-        <%= f.collection_select(:food_id, @foods, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+    <% if !shop_tenant? %>
+        <td class="customSelect">
+            <%= f.collection_select(:food_id, @foods, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
 
-    </td>
+        </td>
+    <% end %>
+
+    <% if shop_tenant? %>
+        <td class="customSelect">
+            <%= f.collection_select(:product_id, @products, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+
+        </td>
+    <% end %>
     <td>
         <%= f.number_field :price, class: "form-control", required: true, readonly: true %>
     </td>

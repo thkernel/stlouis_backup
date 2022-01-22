@@ -12,6 +12,7 @@
 #  status     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  product_id :bigint
 #
 
 class OrderItem < ApplicationRecord
@@ -21,7 +22,8 @@ class OrderItem < ApplicationRecord
   before_save :generate_random_number_uid
 
   belongs_to :order
-  belongs_to :food
+  belongs_to :food, optional: true
+  belongs_to :product, optional: :true
 
 
 	# Change default params ID to uid
