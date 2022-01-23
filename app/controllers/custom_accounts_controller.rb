@@ -79,7 +79,7 @@ class CustomAccountsController < ApplicationController
     end
 
     def delete
-    	@account = Account.find_by(uid: params[:id])
+    	@account = Account.find_by(uid: params[:uid])
     end
 
     def get_disable
@@ -151,17 +151,15 @@ class CustomAccountsController < ApplicationController
     	@accounts = Account.all
     
     	if @account.destroy
-				@accounts = account.where.not(id: current_account.id)
-        record_activity("Supprimer un utilisateur (ID: #{@account.id})")
+			@accounts = Account.where.not(id: current_account.id)
+        	#record_activity("Supprimer un utilisateur (ID: #{@account.id})")
 
-				respond_to do |format|
-					format.html { redirect_to all_accounts_path, notice: "L'utilisateur a été supprimer avec succès!" }
-					format.json { head :no_content }
-					format.js
-			
-					
-			
-				end
+			respond_to do |format|
+				format.html { redirect_to all_accounts_path, notice: "L'utilisateur a été supprimer avec succès!" }
+				format.json { head :no_content }
+				format.js
+
+			end
 		end
 
  	end

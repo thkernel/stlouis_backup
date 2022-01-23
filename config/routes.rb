@@ -6,6 +6,7 @@ class SubdomainConstraint
 end 
 
 Rails.application.routes.draw do
+  resources :activity_logs
   resources :order_item_drinks
   resources :drink_types
   get 'search/orders' => 'search#search_orders', as: :search_orders
@@ -147,6 +148,9 @@ Rails.application.routes.draw do
 
 
 	get "/account/show/:uid" => "custom_accounts#show", as: :show_account
+
+  get "utilities/backup" => "utilities#show_backup", as: :show_backup
+  post 'utilities/backup' => "utilities#backup_database", as: :backup_database
 
 	#get "/customers" => "customers#index", as: :customers_index
   
