@@ -5,7 +5,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <div class="form-group">
+        <div class="form-group customSelect">
           <%= form.label :product_category_id, "Catégorie", class: "required"  %>
           <%= form.collection_select(:product_category_id, @product_categories, :id, :name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
         </div>
@@ -15,7 +15,7 @@
           <%= form.text_field :name, id: :product_name, class: "form-control", placeholder: "Nom", required: true %>
         </div>
 
-        <div class="form-group">
+        <div class="form-group customSelect">
           <%= form.label :unity_id, "Unité", class: "required"  %>
           <%= form.collection_select(:unity_id, @unities, :id, :name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
 
@@ -25,9 +25,9 @@
 
        
       <div class="col-md-6">
-         <div class="form-group">
+         <div class="form-group customSelect">
           <%= form.label :provider_id, "Fournisseur"  %>
-          <%= form.collection_select(:provider_id, @providers, :id, :full_name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+          <%= form.collection_select(:provider_id, @providers, :id, :provider_name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
 
         </div>
 
