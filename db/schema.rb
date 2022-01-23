@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_23_172538) do
+ActiveRecord::Schema.define(version: 2022_01_23_202525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,14 @@ ActiveRecord::Schema.define(version: 2022_01_23_172538) do
     t.string "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "account_id"
+    t.string "browser"
+    t.string "ip_address"
+    t.string "controller"
+    t.string "action"
+    t.string "params"
+    t.string "note"
+    t.index ["account_id"], name: "index_activity_logs_on_account_id"
   end
 
   create_table "api_keys", force: :cascade do |t|
@@ -414,6 +422,7 @@ ActiveRecord::Schema.define(version: 2022_01_23_172538) do
 
   add_foreign_key "accounts", "roles"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "activity_logs", "accounts"
   add_foreign_key "api_keys", "accounts"
   add_foreign_key "customer_fidelity_cards", "accounts"
   add_foreign_key "customer_fidelity_cards", "customers"
