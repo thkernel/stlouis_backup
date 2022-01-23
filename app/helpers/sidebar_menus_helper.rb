@@ -7,7 +7,7 @@ module SidebarMenusHelper
 			render "layouts/partials/dashboard/navs/administrateur-nav" 
 
 		elsif current_account.role.name == "Superviseur" 
-			render "layouts/partials/dashboard/navs/supervisuer-nav" 
+			render "layouts/partials/dashboard/navs/superviseur-nav" 
 		elsif current_account.role.name == "Gérant" 
 			render "layouts/partials/dashboard/navs/gerant-nav" 
 	    elsif current_account.role.name == "Caissier" 
