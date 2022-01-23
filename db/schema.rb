@@ -280,7 +280,6 @@ ActiveRecord::Schema.define(version: 2022_01_22_152804) do
     t.string "street"
     t.string "po_box"
     t.string "zip_code"
-    t.string "email"
     t.string "description"
     t.string "status"
     t.bigint "account_id"

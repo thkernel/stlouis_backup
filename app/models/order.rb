@@ -33,6 +33,7 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   accepts_nested_attributes_for :order_items ,  allow_destroy: true , :reject_if => :no_order_items
 
+  #scope :day, -> (start_date) {where("DATE(start_date) = ?", start_date)}
 	# Change default params ID to uid
   def to_param
     uid
@@ -57,31 +58,14 @@ class Order < ApplicationRecord
   # Search
     def self.search(start_date, end_date,  account)
         
-        if  account.present?
-           
-            query = Order.order(:created_at)
-            
-            query = query.where("account_id =  ?", account) if account.present?
-           
-
-            
-            query
         
-        else 
-            query = Order.order(:created_at)
-            #query = query.where(excercise_year_id: current_excercise)
-            #query = query.where("production_date = ? AND acte_date = ? AND bank_name = ? AND contributor_name = ? AND producer_name = ?", production_date, acte_date, bank_name, contributor_name, producer_name) if production_date.present?
-            
-            
-            query = query.where("created_at BETWEEN ? AND ? ", start_date, end_date) if start_date.present? and  end_date.present?
-            query = query.where("account_id =  ?", account) if account.present?
-           
-            
-
-            query
+      query = Order.order(:created_at)
+      query = query.where("DATE(created_at) BETWEEN ? AND ? ", start_date, end_date) if start_date.present? and  end_date.present?
+      query = query.where("account_id =  ?", account) if account.present?
+     
+      query
         
-        end
-        
+       
     end
 
   private

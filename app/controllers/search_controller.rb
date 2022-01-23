@@ -14,7 +14,13 @@ class SearchController < ApplicationController
 
     start_date = Date.parse(params[:start_date]) if params[:start_date].present? 
     end_date = Date.parse(params[:end_date]) if params[:end_date].present? 
-    account = params[:account] if params[:account].present? 
+    account = params[:account] if params[:account].present?
+    
+    puts "START DATE: #{start_date}"
+    puts "END DATE: #{end_date}"
+    puts "ACCOUNT: #{account}"
+
+     
 
     @selected_start_date = start_date if start_date.present?
     @selected_end_date = end_date if end_date.present?

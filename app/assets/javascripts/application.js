@@ -105,7 +105,7 @@ $(document).on('turbolinks:load', function() {
             sortDescending: ": activer pour trier la colonne par ordre décroissant"
         }
     },
-    responsive: false
+    responsive: true
       };
       
       $('#datatable1').DataTable(datatable);
