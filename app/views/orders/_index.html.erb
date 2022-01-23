@@ -14,17 +14,20 @@
                     
 
 <div class="action-buttons">
-                    <%= link_to raw('<i class="fa fa-eye" aria-hidden="true"></i>
+    <% if can? :show, Order %>
+        <%= link_to raw('<i class="fa fa-eye" aria-hidden="true"></i>
 '), order_path(order.uid), title: "Voir", remote: false %>
+<% end %>
 
 <%= link_to raw('<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
       '), generate_pdf_path(order.uid, format: :pdf), remote: false, title: "Télécharger" %>
 
 
 <% if unconfirmed_order?(order) %>
-
-    <%= link_to raw('<i class="fa fa-ban" aria-hidden="true"></i>
+    <% if can? :destroy, Order %>
+        <%= link_to raw('<i class="fa fa-ban" aria-hidden="true"></i>
     '), get_cancel_path(order.uid), remote: true, title: "Annuler", class: "delete" %>
+    <% end %>
 
 <% end %>
 </div>

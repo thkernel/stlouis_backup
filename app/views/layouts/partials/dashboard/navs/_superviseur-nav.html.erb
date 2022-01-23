@@ -7,113 +7,141 @@
 
         
 
-         
-      <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="fa fa-shopping-basket tx-20"></i>
-            <span class="menu-item-label">Caisse</span>
-          </a><!-- br-menu-link -->
-          <ul class="br-menu-sub">
-            
-            <li class="sub-item">
-                <%= link_to  "Commandes", orders_path, class: "sub-link #{current? "active", fidelity_cards_path}" %>
-            </li>
+        <% if can? :read, Order %>
+          <li class="br-menu-item">
+              <a href="#" class="br-menu-link with-sub">
+                <i class="fa fa-shopping-basket tx-20"></i>
+                <span class="menu-item-label">Caisse</span>
+              </a><!-- br-menu-link -->
+              <ul class="br-menu-sub">
+                <% if can? :read, Order %>
+                  <li class="sub-item">
+                      <%= link_to  "Commandes", orders_path, class: "sub-link #{current? "active", fidelity_cards_path}" %>
+                  </li>
 
-           
-             
-          </ul>
-        </li>
-
-        <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="fa fa-id-card-o tx-20"></i>
-            <span class="menu-item-label">Cartes de fidélité</span>
-          </a><!-- br-menu-link -->
-          <ul class="br-menu-sub">
-            
-            <li class="sub-item">
-                <%= link_to  "Cartes", fidelity_cards_path, class: "sub-link #{current? "active", fidelity_cards_path}" %>
+                <% end %>
+                 
+              </ul>
             </li>
+        <% end %>
 
-            <li class="sub-item">
-                <%= link_to  "Ventes", customer_fidelity_cards_path, class: "sub-link #{current? "active", customer_fidelity_cards_path}" %>
-            </li>
+        <% if can? :read, FidelityCard %>
+          <li class="br-menu-item">
+            <a href="#" class="br-menu-link with-sub">
+              <i class="fa fa-id-card-o tx-20"></i>
+              <span class="menu-item-label">Cartes de fidélité</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub">
+              <% if can? :read, FidelityCard %>
+                <li class="sub-item">
+                    <%= link_to  "Cartes", fidelity_cards_path, class: "sub-link #{current? "active", fidelity_cards_path}" %>
+                </li>
+              <% end %>
 
-            <li class="sub-item">
-                <%= link_to  "Recharges", recharge_fidelity_cards_path, class: "sub-link #{current? "active", recharge_fidelity_cards_path}" %>
-            </li>
-             
-          </ul>
-        </li>
+              <% if (can? :read, FidelityCard) || (can? :read, CustomerFidelityCard) || (can? :read, RechargeFidelityCard)  %>
+              
+                <li class="sub-item">
+                    <%= link_to  "Ventes", customer_fidelity_cards_path, class: "sub-link #{current? "active", customer_fidelity_cards_path}" %>
+                </li>
+              <% end %>
+              <% if can? :read, RechargeFidelityCard %>
+                <li class="sub-item">
+                    <%= link_to  "Recharges", recharge_fidelity_cards_path, class: "sub-link #{current? "active", recharge_fidelity_cards_path}" %>
+                </li>
+              <% end %>
+               
+            </ul>
+          </li>
+        <% end %>
 
-        <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="fa fa-cutlery tx-20"></i>
-            <span class="menu-item-label">Plats</span>
-          </a><!-- br-menu-link -->
-          <ul class="br-menu-sub">
-            
-            <li class="sub-item">
-                <%= link_to  "Catégories", food_categories_path, class: "sub-link #{current? "active", food_categories_path}" %>
-            </li>
+        <% if can? :read, Food %>
+          <li class="br-menu-item">
+            <a href="#" class="br-menu-link with-sub">
+              <i class="fa fa-cutlery tx-20"></i>
+              <span class="menu-item-label">Plats</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub">
+              <% if can? :read, FoodCategory %>
+                <li class="sub-item">
+                    <%= link_to  "Catégories", food_categories_path, class: "sub-link #{current? "active", food_categories_path}" %>
+                </li>
+              <% end %>
 
-            <li class="sub-item">
-                <%= link_to  "Plats", foods_path, class: "sub-link #{current? "active", foods_path}" %>
-            </li>
-             
-          </ul>
-        </li>
+              <% if can? :read, Food %>
+                <li class="sub-item">
+                    <%= link_to  "Plats", foods_path, class: "sub-link #{current? "active", foods_path}" %>
+                </li>
+              <% end %>
+               
+            </ul>
+          </li>
+        <% end %>
+
+        
+        <% if (can? :read, PorductCategory) || (can? :read, Product) || (can? :read, StockEntry) || (can? :read, StockExit)%>
+          <li class="br-menu-item">
+            <a href="#" class="br-menu-link with-sub">
+              <i class="fa fa-cubes tx-20"></i>
+              <span class="menu-item-label">Produits</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub">
+              <% if (can? :read, PorductCategory) %>
+                <li class="sub-item">
+                    <%= link_to  "Catégories de produit", product_categories_path, class: "sub-link #{current? "active", product_categories_path}" %>
+                </li>
+              <% end %>
+
+              <% if (can? :read, Porduct) %>
+                <li class="sub-item">
+                    <%= link_to  "Produits", products_path, class: "sub-link #{current? "active", products_path}" %>
+                </li>
+              <% end %>
+
+              <% if (can? :read, StockEntry) %>
+                <li class="sub-item">
+                  <%= link_to  "Entrées stock", stock_entries_path, class: "sub-link #{current? "active", stock_entries_path}" %>
+                </li>
+              <% end %>
+
+              <% if (can? :read, StockExit) %>
+
+                <li class="sub-item">
+                    <%= link_to  "Sorties stock", stock_exits_path, class: "sub-link #{current? "active", stock_exits_path}" %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+
+        <% end %>
+
 
         
 
-        <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="fa fa-cubes tx-20"></i>
-            <span class="menu-item-label">Produits</span>
-          </a><!-- br-menu-link -->
-          <ul class="br-menu-sub">
-            <li class="sub-item">
-                <%= link_to  "Catégories de produit", product_categories_path, class: "sub-link #{current? "active", product_categories_path}" %>
-            </li>
-
-            
-            <li class="sub-item">
-                <%= link_to  "Produits", products_path, class: "sub-link #{current? "active", products_path}" %>
-            </li>
-             <li class="sub-item">
-                <%= link_to  "Entrées stock", stock_entries_path, class: "sub-link #{current? "active", stock_entries_path}" %>
-            </li>
-
-            <li class="sub-item">
-                <%= link_to  "Sorties stock", stock_exits_path, class: "sub-link #{current? "active", stock_exits_path}" %>
-            </li>
-          </ul>
-        </li>
-
-         
-
-
-        
-
-        <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="fa fa-users tx-20"></i>
-            <span class="menu-item-label">Tierces</span>
-          </a><!-- br-menu-link -->
-          <ul class="br-menu-sub">
-            
-            <li class="sub-item">
-                <%= link_to  "Clients", customers_path, class: "sub-link #{current? "active", customers_path}" %>
-            </li>
-             <li class="sub-item">
-                <%= link_to  "Fournisseurs",providers_path, class: "sub-link #{current? "active", providers_path}" %>
-            </li>
-          </ul>
-        </li>
+        <% if (can? :read, Customer) || (can? :read, Provider) %>
+          <li class="br-menu-item">
+            <a href="#" class="br-menu-link with-sub">
+              <i class="fa fa-users tx-20"></i>
+              <span class="menu-item-label">Tierces</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub">
+              <% if (can? :read, Customer) %>
+                <li class="sub-item">
+                    <%= link_to  "Clients", customers_path, class: "sub-link #{current? "active", customers_path}" %>
+                </li>
+              <% end %>
+              <% if (can? :read, Provider) %>
+                <li class="sub-item">
+                    <%= link_to  "Fournisseurs",providers_path, class: "sub-link #{current? "active", providers_path}" %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
         
          
 
 
+       
 
        
       </ul><!-- br-sideleft-menu -->
