@@ -28,6 +28,7 @@
                             <td>
                                 Référence #: <%= @order.uid %><br>
                                 Crée le: <%= @order.created_at.strftime("%d/%m/%Y") %><br>
+                                Caissier/Serveur #: <%= @order.account.login %><br>
                                 
                             </td>
                         </tr>

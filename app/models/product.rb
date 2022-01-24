@@ -27,7 +27,7 @@ class Product < ApplicationRecord
   before_save :generate_random_number_uid
 
   belongs_to :product_category
-  belongs_to :provider
+  belongs_to :provider, optional: true
   belongs_to :unity
   belongs_to :account
 
