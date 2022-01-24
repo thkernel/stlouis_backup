@@ -41,7 +41,7 @@ class DashboardController < ApplicationController
 		#@overdue_arrival_mails = ArrivalMail.where("to_answer = ? AND response_limit_time < ?", "Oui", Time.now)
 		#@overdue_tickets = Ticket.where("due_date < ? AND status <> ?", Time.now, "Completed")
 
-		record_activity("Afficher le tableau de bord")
+		#record_activity("Afficher le tableau de bord")
 
 		
 		
