@@ -19,11 +19,13 @@ class StockExit < ApplicationRecord
 	# Include shared utils.
   include SharedUtils::Generate
 
-  before_save :generate_random_number_uid, :reduce_current_stock
+  before_save :generate_random_number_uid #, :reduce_current_stock
 
   belongs_to :product
   belongs_to :account
   belongs_to :unity
+
+  validates_with StockExitValidator::StockReduceValidator
 
 
   private
