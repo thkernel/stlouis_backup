@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
     
       puts "ID: #{data}"
       product = Product.find(data)
-      puts "Product: #{product}"
+      puts "Product: #{product.inspect}"
       data = {:data => product}
       render :json => data
     
@@ -100,7 +100,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to orders_path, notice: "Commande créee avec succès." }
+        format.html { redirect_to order_path(@order.uid), notice: "Commande créee avec succès." }
         format.json { render :show, status: :created, location: @order }
       else
         @customers = Customer.all
@@ -164,5 +164,6 @@ class OrdersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def order_params
       params.require(:order).permit(:uid, :customer_id, :table_id, :vip_space, order_items_attributes: [:id,  :food_id, :product_id, :quantity,  :price, :amount,  :_destroy])
+     # , order_item_drinks_attributes: [:id,   :product_id, :quantity,  :unit_price, :amount,  :_destroy]
     end
 end

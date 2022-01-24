@@ -25,7 +25,7 @@
             </li>
         <% end %>
 
-        <% if can? :read, FidelityCard %>
+        <% if (can? :read, FidelityCard)  %>
           <li class="br-menu-item">
             <a href="#" class="br-menu-link with-sub">
               <i class="fa fa-id-card-o tx-20"></i>
@@ -38,7 +38,7 @@
                 </li>
               <% end %>
 
-              <% if (can? :read, FidelityCard) || (can? :read, CustomerFidelityCard) || (can? :read, RechargeFidelityCard)  %>
+              <% if (can? :read, CustomerFidelityCard)   %>
               
                 <li class="sub-item">
                     <%= link_to  "Ventes", customer_fidelity_cards_path, class: "sub-link #{current? "active", customer_fidelity_cards_path}" %>
@@ -78,14 +78,14 @@
         <% end %>
 
         
-        <% if (can? :read, PorductCategory) || (can? :read, Product) || (can? :read, StockEntry) || (can? :read, StockExit)%>
+        <% if (can? :read, ProductCategory) || (can? :read, Product) || (can? :read, StockEntry) || (can? :read, StockExit) %>
           <li class="br-menu-item">
             <a href="#" class="br-menu-link with-sub">
               <i class="fa fa-cubes tx-20"></i>
               <span class="menu-item-label">Produits</span>
             </a><!-- br-menu-link -->
             <ul class="br-menu-sub">
-              <% if (can? :read, PorductCategory) %>
+              <% if (can? :read, ProductCategory) %>
                 <li class="sub-item">
                     <%= link_to  "Catégories de produit", product_categories_path, class: "sub-link #{current? "active", product_categories_path}" %>
                 </li>
@@ -109,6 +109,7 @@
                     <%= link_to  "Sorties stock", stock_exits_path, class: "sub-link #{current? "active", stock_exits_path}" %>
                 </li>
               <% end %>
+
             </ul>
           </li>
 

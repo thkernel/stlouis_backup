@@ -25,7 +25,7 @@
             </li>
         <% end %>
 
-        <% if can? :read, FidelityCard %>
+        <% if (can? :read, FidelityCard) || (can? :read, CustomerFidelityCard) || (can? :read, RechargeFidelityCard)  %>
           <li class="br-menu-item">
             <a href="#" class="br-menu-link with-sub">
               <i class="fa fa-id-card-o tx-20"></i>
@@ -38,7 +38,7 @@
                 </li>
               <% end %>
 
-              <% if (can? :read, FidelityCard) || (can? :read, CustomerFidelityCard) || (can? :read, RechargeFidelityCard)  %>
+              <% if (can? :read, CustomerFidelityCard)   %>
               
                 <li class="sub-item">
                     <%= link_to  "Ventes", customer_fidelity_cards_path, class: "sub-link #{current? "active", customer_fidelity_cards_path}" %>

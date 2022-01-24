@@ -31,7 +31,9 @@ class Order < ApplicationRecord
   
 
   has_many :order_items, dependent: :destroy
+  #has_many :order_item_drinks, dependent: :destroy
   accepts_nested_attributes_for :order_items ,  allow_destroy: true , :reject_if => :no_order_items
+  #accepts_nested_attributes_for :order_item_drinks ,  allow_destroy: true #, :reject_if => :no_order_items
 
   #scope :day, -> (start_date) {where("DATE(start_date) = ?", start_date)}
 	# Change default params ID to uid
