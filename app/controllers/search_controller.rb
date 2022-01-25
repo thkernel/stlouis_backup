@@ -27,7 +27,7 @@ class SearchController < ApplicationController
     @selected_account = account if account.present?
 
 
-    @orders = Order.search(start_date, end_date, account)#.paginate(:page => params[:page], :per_page => 15) #if Credit.search(bank_name).present?
+    @orders = Order.search(start_date, end_date, account).where.not(status: "Annulée")#.paginate(:page => params[:page], :per_page => 15) #if Credit.search(bank_name).present?
 
     
     @total = @orders.sum(:total)
