@@ -1,5 +1,5 @@
-module StockExitValidator
-    class StockReduceValidator < ActiveModel::Validator
+module OrderItemsValidator
+    class OrderItemsValidator < ActiveModel::Validator
   
         def validate(record)
 
@@ -9,15 +9,22 @@ module StockExitValidator
             if record.new_record?
                 puts "ON VALIDATOR"
                 puts "RECORD: #{record.inspect}"
-                if record.product_id.present?
+                #order_items = record.order_items
+                order_items = record.order_items
 
-                    puts "PRODUCT PRESENT"
+                #puts "ORDER ITEMS: #{order_items.inspect}"
+                puts "ORDER ITEM DRINKS: #{order_items.inspect}"
 
-                    product = Product.find(record.product_id)
-                    quantity = record.quantity.to_f
+                order_items.each do |order_item|
+
+
+                    product = Product.find(order_item.product_id)
+                    quantity = order_item.quantity.to_f
 
                     puts "PRODUCT FOUND: #{product.inspect}"
+
                     if product.present? && quantity > 0.0  
+                        
                         puts "Product current stock: #{product.current_stock}"
                         if product.current_stock.present? && product.current_stock >= quantity
                             puts "STOCK AVAILABLE"
@@ -26,19 +33,17 @@ module StockExitValidator
                             product.update_column(:current_stock, current_stock);
                         else
                             puts "ELSE CASE"
-                            record.errors.add(:stock_exit,"Le stock est insuffisant.")
-                        end
-
-                        
+                            record.errors.add(:product,": #{product.name} insuffisant dans le stock")
+                        end 
                     end
+                
                 end
+                
+                
             end
     
             #puts "RECORD: #{record.imputation_items.inspect}"
         end
       
     end
-
-
-    
 end

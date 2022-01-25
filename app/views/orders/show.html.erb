@@ -101,6 +101,23 @@
               </tr>
             <% end %>
 
+            <% @order.order_item_drinks.each do |item|  %>
+              <tr class="item">
+                  <td>
+                    <%= item.product.name %>
+                  </td>
+                  <td>
+                      <%= number_with_precision(item.quantity, delimiter: " ", separator: "", precision: 0) %>
+                  </td>
+                  <td>
+                      <%= number_with_precision( item.unit_price, delimiter: " ", separator: "", precision: 0) %>
+                  </td>
+                  <td>
+                      <%= number_with_precision(item.quantity * item.unit_price, delimiter: " ", separator: "", precision: 0) %>
+                  </td>
+              </tr>
+            <% end  %>
+
             <% if @order.vip_space  %>
               <tr class="item">
                 <td>
