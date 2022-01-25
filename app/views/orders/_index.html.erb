@@ -5,7 +5,7 @@
     <td><%= order.customer.customer_name %></td>
     <td><%= order.table.name if order.table.present? %></td>
     <td><%= order.total %></td>
-    <td><%= order.paid %></td>
+    <td><span class="order_payment_status_<%= order.paid %>"><%= order.paid %></span></td>
     <td><%= order.payment_method %></td>
     <td><%= order.status %></td>
     
