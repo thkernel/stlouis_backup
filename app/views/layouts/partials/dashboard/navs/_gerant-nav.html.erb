@@ -91,7 +91,7 @@
                 </li>
               <% end %>
 
-              <% if (can? :read, Porduct) %>
+              <% if (can? :read, Product) %>
                 <li class="sub-item">
                     <%= link_to  "Produits", products_path, class: "sub-link #{current? "active", products_path}" %>
                 </li>

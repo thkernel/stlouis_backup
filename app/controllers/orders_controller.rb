@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-   authorize_resource
+   #authorize_resource, except: :food
+   load_and_authorize_resource :except => [:food, :product]
    
   before_action :authenticate_account!
   layout "dashboard"
@@ -100,7 +101,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to order_path(@order.uid), notice: "Commande créee avec succès." }
+        format.html { redirect_to show_order_path(uid: @order.uid), notice: "Commande créee avec succès." }
         format.json { render :show, status: :created, location: @order }
       else
         @customers = Customer.all
@@ -158,7 +159,7 @@ class OrdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.find_by(uid: params[:id])
+      @order = Order.find_by(uid: params[:uid])
     end
 
     # Only allow a list of trusted parameters through.

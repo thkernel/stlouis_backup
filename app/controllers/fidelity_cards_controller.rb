@@ -80,6 +80,6 @@ class FidelityCardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def fidelity_card_params
-      params.require(:fidelity_card).permit(:balance, :status)
+      params.require(:fidelity_card).permit(:balance, :uid, :status)
     end
 end

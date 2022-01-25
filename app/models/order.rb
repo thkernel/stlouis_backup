@@ -54,7 +54,12 @@ class Order < ApplicationRecord
 
 
   def subtotal
-    order_items.collect {|order_item| order_item.valid? ? (order_item.price*order_item.quantity) : 0}.sum
+    if self.vip_space == true
+    order_items.collect {|order_item| order_item.valid? ? (order_item.price*order_item.quantity) : 0}.sum + 1000
+    else
+      order_items.collect {|order_item| order_item.valid? ? (order_item.price*order_item.quantity) : 0}.sum 
+    end
+
   end
 
   # Search

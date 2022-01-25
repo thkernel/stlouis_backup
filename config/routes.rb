@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get "delete"
   end
   resources :api_keys
-  get "orders/:id/pdf" => "orders#generate_pdf", as: :generate_pdf
+  get "orders/:uid/pdf" => "orders#generate_pdf", as: :generate_pdf
   get "orders/scan_card" => "orders#scan_card", as: :scan_card
 
 
@@ -70,10 +70,11 @@ Rails.application.routes.draw do
   resources :order_items do
     get "delete"
   end
-
-  #get "orders/show/:uid" => "orders#show",as: :show_order
+get "orders/show/:uid" => "orders#show",as: :show_order
+  
 
   resources :orders do
+    
     get "delete"
     collection do    
       get "food" => "orders#food"

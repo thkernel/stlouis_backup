@@ -29,7 +29,7 @@
                                 Référence: <%= @order.uid %><br>
                                 Crée le: <%= @order.created_at.strftime("%d/%m/%Y") %><br>
                                 Caissier/Serveur : <%= @order.account.login %><br>
-                                Table: : <%= @order.table.name if @order.table %><br>
+                                Table: <%= @order.table.name if @order.table %><br>
                                 
                             </td>
                         </tr>
@@ -100,6 +100,24 @@
                   </td>
               </tr>
             <% end %>
+
+            <% if @order.vip_space  %>
+              <tr class="item">
+                <td>
+                   Accès espace VIP
+                  </td>
+                  
+                  <td>
+                      
+                  </td>
+                  <td>
+                     
+                  </td>
+                  <td>
+                     1 000
+                  </td>
+              </td>
+            <% end  %>
             
            
             
