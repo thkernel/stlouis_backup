@@ -21,7 +21,7 @@
                         <tr>
                             <td class="title">
                               <div class="invoice-logo">
-                                	<%= image_tag "logo/logo-stlouis.png", alt: "Logo" %> 
+                                	<%= image_tag "logo/logo.png", alt: "Logo" %> 
                                 </div>
                             </td>
                             
@@ -104,7 +104,7 @@
             <% @order.order_item_drinks.each do |item|  %>
               <tr class="item">
                   <td>
-                    <%= item.product.name item.product_id.present? %>
+                    <%= item.product.name if item.product_id.present? %>
                   </td>
                   <td>
                       <%= number_with_precision(item.quantity, delimiter: " ", separator: "", precision: 0) %>
