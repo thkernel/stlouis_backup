@@ -31,9 +31,13 @@ class Order < ApplicationRecord
   
 
   has_many :order_items, dependent: :destroy
-  #has_many :order_item_drinks, dependent: :destroy
+  has_many :order_item_drinks, dependent: :destroy
+
+  validates_with OrderItemDrinksValidator::OrderItemDrinksValidator
+  validates_with OrderItemsValidator::OrderItemsValidator
+
   accepts_nested_attributes_for :order_items ,  allow_destroy: true , :reject_if => :no_order_items
-  #accepts_nested_attributes_for :order_item_drinks ,  allow_destroy: true #, :reject_if => :no_order_items
+  accepts_nested_attributes_for :order_item_drinks ,  allow_destroy: true , :reject_if => :no_order_item_drinks
 
   #scope :day, -> (start_date) {where("DATE(start_date) = ?", start_date)}
 	# Change default params ID to uid
@@ -51,14 +55,28 @@ class Order < ApplicationRecord
     end
   end
 
+  def no_order_item_drinks(attributes)
+   if Apartment::Tenant.current == "shop"
+    
+    attributes[:product_id].blank?
+ 
 
-
-  def subtotal
-    if self.vip_space == true
-    order_items.collect {|order_item| order_item.valid? ? (order_item.price*order_item.quantity) : 0}.sum + 1000
-    else
-      order_items.collect {|order_item| order_item.valid? ? (order_item.price*order_item.quantity) : 0}.sum 
     end
+  end
+
+
+
+  def order_item_subtotal
+   
+      order_items.collect {|order_item| order_item.valid? ? (order_item.price*order_item.quantity) : 0}.sum 
+    
+
+  end
+
+  def order_item_drink_subtotal
+    
+      order_item_drinks.collect {|order_item| order_item.valid? ? (order_item.unit_price*order_item.quantity) : 0}.sum 
+    
 
   end
 
@@ -78,8 +96,13 @@ class Order < ApplicationRecord
   private
     def set_total
       puts "SUBTOTAL: #{subtotal}"
-      self[:subtotal] = subtotal
-      self[:total] = subtotal
+      if self.vip_space == true
+        self[:subtotal] = order_item_subtotal + order_item_drink_subtotal + 1000
+        self[:total] = order_item_subtotal + order_item_drink_subtotal + 1000
+      else
+        self[:subtotal] = order_item_subtotal + order_item_drink_subtotal 
+        self[:total] = order_item_subtotal + order_item_drink_subtotal 
+      end
     end
 
     def set_status

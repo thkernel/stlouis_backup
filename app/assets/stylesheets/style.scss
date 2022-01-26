@@ -63,7 +63,7 @@
     font-weight: 600 !important;
 }
 .logo img {
-    width: 60px !important;
+    /*width: 60px !important;*/
 }
 .field_with_errors{
     color: red !important;
@@ -381,7 +381,9 @@ span.tag-item{
     width: 100%;
 }
 .signin-logo img {
-    width: 100%;
+    
+
+    width: 136px !important;
 }
 
 
@@ -428,6 +430,45 @@ span.tag-item{
     background-color: #2792f0;
     color: white;
 }
+.order_payment_status_impayee{
+    
+}
+.order_payment_status_payee{
+    background-color: green;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.order_payment_status_impayee{
+    background-color: orange;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.order_status_confirmee{
+    background-color: green;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.order_status_en-attente{
+    background-color: blue;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.order_status_annulee{
+    background-color: red;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+
 
 
 

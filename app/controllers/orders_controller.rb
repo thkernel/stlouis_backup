@@ -105,8 +105,9 @@ class OrdersController < ApplicationController
         format.json { render :show, status: :created, location: @order }
       else
         @customers = Customer.all
-    @tables = Table.all
-    @foods = Food.all
+        @tables = Table.all
+        @foods = Food.all
+        @products = Product.all
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
@@ -164,7 +165,7 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:uid, :customer_id, :table_id, :vip_space, order_items_attributes: [:id,  :food_id, :product_id, :quantity,  :price, :amount,  :_destroy])
-     # , order_item_drinks_attributes: [:id,   :product_id, :quantity,  :unit_price, :amount,  :_destroy]
+      params.require(:order).permit(:uid, :customer_id, :table_id, :vip_space, order_items_attributes: [:id,  :food_id, :product_id, :quantity,  :price, :amount,  :_destroy], order_item_drinks_attributes: [:id,   :product_id, :quantity,  :unit_price, :amount,  :_destroy])
+     
     end
 end

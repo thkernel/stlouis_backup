@@ -70,14 +70,50 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-          <%= link_to_add_association raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), form, :order_items, class: 'btn btn-primary', data: { association_insertion_node: '.items', association_insertion_method: :append } %>
+          <%= link_to_add_association raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter un plat'), form, :order_items, class: 'btn btn-primary', data: { association_insertion_node: '.items', association_insertion_method: :append } %>
         </div>
       </div>
     </div>
     
   </fieldset>
 
+  <!-- Fieldset informations -->
+  <% if !shop_tenant? %>
+  <fieldset>
+    <legend>Liste des  boissons </legend>
+    <div class="row">
+      <div id="order-item-drinks">
 
+        <table class="table  responsive ">
+          <thead>
+            <tr role="row">
+              <th>Boisson</th>
+              <th>P.U</th>
+              <th>Quanité</th>
+              <th>Montant</th>
+              
+              
+            </tr>
+          </thead>
+          <tbody class="item-drinks">
+            <%= form.fields_for :order_item_drinks do |item_drink| %>
+                <%= render 'order_item_drink_fields', f: item_drink %>
+            <% end %>
+          </tbody>
+        </table>  
+      </div> 
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= link_to_add_association raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter une boisson'), form, :order_item_drinks, class: 'btn btn-primary', data: { association_insertion_node: '.item-drinks', association_insertion_method: :append } %>
+        </div>
+      </div>
+    </div>
+    
+  </fieldset>
+
+  <% end %>
  
 
  
