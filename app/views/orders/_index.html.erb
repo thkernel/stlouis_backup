@@ -5,9 +5,9 @@
     <td><%= order.customer.customer_name %></td>
     <td><%= order.table.name if order.table.present? %></td>
     <td><%= order.total %></td>
-    <td><span class="order_payment_status_<%= order.paid %>"><%= order.paid %></span></td>
+    <td><span class="order_payment_status_<%= order.paid.parameterize %>"><%= order.paid %></span></td>
     <td><%= order.payment_method %></td>
-    <td><%= order.status %></td>
+    <td><span class="order_status_<%= order.status.parameterize %>"><%= order.status %></span></td>
     
     <td>
                     <div class="action-buttons">
