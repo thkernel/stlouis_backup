@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: orders
+# Table name: public.orders
 #
 #  id             :bigint           not null, primary key
 #  uid            :string

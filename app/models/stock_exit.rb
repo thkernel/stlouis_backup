@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: stock_exits
+# Table name: public.stock_exits
 #
 #  id          :bigint           not null, primary key
 #  uid         :string

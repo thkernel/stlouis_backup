@@ -6,6 +6,11 @@ class SubdomainConstraint
 end 
 
 Rails.application.routes.draw do
+
+  resources :customer_discounts, path: "customer-discounts" do   
+    get "delete"
+  end
+
   resources :activity_logs
   resources :order_item_drinks
   resources :drink_types
