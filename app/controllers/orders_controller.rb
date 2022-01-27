@@ -20,17 +20,22 @@ class OrdersController < ApplicationController
 
   def food 
     data = params[:data]
+    customer_id = params[:customer_id]
     
       puts "ID: #{data}"
+
       food = Food.find(data)
+
+      customer_discount = CustomerDiscount.find_by(customer_id: customer_id) 
+      
       puts "FOOD: #{food}"
-      data = {:data => food}
+      data = {:data => food, :customer_discount  => customer_discount}
       render :json => data
     
   end
 
   def product 
-    data = params[:data]
+      data = params[:data]
     
       puts "ID: #{data}"
       product = Product.find(data)
@@ -165,7 +170,7 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:uid, :customer_id, :table_id, :vip_space, order_items_attributes: [:id,  :food_id, :product_id, :quantity,  :price, :amount,  :_destroy], order_item_drinks_attributes: [:id,   :product_id, :quantity,  :unit_price, :amount,  :_destroy])
+      params.require(:order).permit(:uid, :customer_id, :table_id, :vip_space, order_items_attributes: [:id,  :food_id, :product_id, :quantity, :discount, :price, :amount,  :_destroy], order_item_drinks_attributes: [:id,   :product_id, :quantity,  :unit_price, :amount,  :_destroy])
      
     end
 end

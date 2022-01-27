@@ -11,6 +11,9 @@ $(document).on('turbolinks:load', function(){
         var field = array[5];
         console.log("Object ID: ",object_id );
         console.log("FIELD: ", field );
+        var customer_id = $("#order_customer_id").val();
+
+        console.log("ORDER CUSTOM: ", customer_id);
        
 
         if (field == "product"){
@@ -36,10 +39,30 @@ $(document).on('turbolinks:load', function(){
                         },
                 dataType: 'json',
                 url: "food",
-                data: { data: target_value},     
+                data: { data: target_value, customer_id: customer_id },     
                 success: function(response) {
-                    var _price = response.data.price;
+                    
+                    var _discount_amount = null;
+                    var _price = null;
+
+                    if (response.customer_discount){
+
+                        _discount_amount = response.customer_discount.amount;
+                    }
+                    
+                    if (response.data !== null){
+                        _price = response.data.price;
+                    }
+                    
+
+                    if (response.customer_discount !== null){
+                        if (_price >= _discount_amount){
+                            _price = _price - _discount_amount;
+                        }
+                    }
+
                     var price = "order_order_items_attributes_" + object_id + "_price";
+                    
                     $("#"+price).val(_price);
                 }
             });
@@ -59,12 +82,33 @@ $(document).on('turbolinks:load', function(){
         console.log("Object ID: ",object_id );
 
         // calcul
+        var discount = $("#order_order_items_attributes_" + object_id + "_discount").val();
+        var price = $("#order_order_items_attributes_" + object_id + "_price").val();
+        var amount = "order_order_items_attributes_" + object_id + "_amount";
+     
+        //var total_amount = (parseFloat((price )  * parseFloat(target_value)).toFixed(2)) - parseFloat(discount);
+        var total_amount = parseFloat((price )  * parseFloat(target_value)) - parseFloat(discount);
+        $("#"+amount).val(total_amount);
+    });
+
+    $("#order-items").on('change', "input", function(event) {
+        var target_id = event.target.id;
+        var target_value = $("#"+target_id ).val();
+        console.log("Value: ", target_value);
+        console.log("ID: ",target_id)
+        var array = target_id.split("_");
+        var object_id = array[4];
+        console.log("Object ID: ",object_id );
+
+        // calcul
+       
         var price = $("#order_order_items_attributes_" + object_id + "_price").val();
         var amount = "order_order_items_attributes_" + object_id + "_amount";
      
         var total_amount = parseFloat((price )  * parseFloat(target_value)).toFixed(2);
         $("#"+amount).val(total_amount);
     });
+
 
     // For Order item drinks
 

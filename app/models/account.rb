@@ -64,7 +64,7 @@ class Account < ApplicationRecord
    has_many :recharge_fidelity_cards, dependent: :destroy
    has_many :orders, dependent: :destroy
    has_many :tenants, dependent: :destroy
-
+   has_many :customer_discounts, dependent: :destroy
    has_many :unities, dependent: :destroy
 
    # Change default params ID to uid

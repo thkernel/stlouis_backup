@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_23_202525) do
+ActiveRecord::Schema.define(version: 2022_01_26_184018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,19 @@ ActiveRecord::Schema.define(version: 2022_01_23_202525) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_api_keys_on_account_id"
+  end
+
+  create_table "customer_discounts", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "customer_id"
+    t.float "amount"
+    t.string "status"
+    t.bigint "account_id"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_customer_discounts_on_account_id"
+    t.index ["customer_id"], name: "index_customer_discounts_on_customer_id"
   end
 
   create_table "customer_fidelity_cards", force: :cascade do |t|
@@ -201,6 +214,7 @@ ActiveRecord::Schema.define(version: 2022_01_23_202525) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "product_id"
+    t.float "discount", default: 0.0
     t.index ["food_id"], name: "index_order_items_on_food_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
@@ -425,6 +439,8 @@ ActiveRecord::Schema.define(version: 2022_01_23_202525) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activity_logs", "accounts"
   add_foreign_key "api_keys", "accounts"
+  add_foreign_key "customer_discounts", "accounts"
+  add_foreign_key "customer_discounts", "customers"
   add_foreign_key "customer_fidelity_cards", "accounts"
   add_foreign_key "customer_fidelity_cards", "customers"
   add_foreign_key "customer_fidelity_cards", "fidelity_cards"
