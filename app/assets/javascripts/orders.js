@@ -58,7 +58,8 @@ $(document).on('turbolinks:load', function(){
                     if (response.customer_discount !== null){
                         if (_price >= _discount_amount){
                             //_price = _price - _discount_amount;
-                            _price = 1500;
+                            //_price = 1500;
+                            _price = _discount_amount;
                         }
                     }
 

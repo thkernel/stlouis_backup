@@ -10,7 +10,13 @@ class OrdersController < ApplicationController
  
   # GET /orders or /orders.json
   def index
-    @orders = Order.all
+
+    if current_account.superuser? || current_account.admin?
+
+      @orders = Order.all
+    else
+      @orders = current_account.orders
+    end
   end
 
   # GET /orders/1 or /orders/1.json
@@ -19,8 +25,8 @@ class OrdersController < ApplicationController
   end
 
   def food 
-    data = params[:data]
-    customer_id = params[:customer_id]
+      data = params[:data]
+      customer_id = params[:customer_id]
     
       puts "ID: #{data}"
 

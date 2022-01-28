@@ -138,6 +138,21 @@
             </ul>
           </li>
         <% end %>
+
+
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fa fa-newspaper-o tx-20"></i>
+            <span class="menu-item-label">Journaux</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            
+            <li class="sub-item">
+                <%= link_to  "Commandes", search_orders_path, class: "sub-link #{current? "active", search_orders_path}" %>
+            </li>
+             
+          </ul>
+        </li>
         
          
 
