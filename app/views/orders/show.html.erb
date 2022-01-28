@@ -4,10 +4,11 @@
   <div class="br-section-wrapper">
 
     <div class="actions text-center mg-b-10">
-      
-      <button type="button"  onclick="printInvoice2()" class= "btn btn-primary print-invoices">Imprimer</button>
+      <% if unpaid?(@order)  && !canceled?(@order) %>
+        <button type="button"  onclick="printInvoice2()" class= "btn btn-primary print-invoices">Imprimer</button>
+      <% end %>
 
-        <% if unpaid?(@order) %>
+        <% if unpaid?(@order)  && !canceled?(@order) %>
             <%= link_to "Payée maintenant", paynow_path(@order.uid), class: "btn btn-warning" %>
         <% end %>
     </div>

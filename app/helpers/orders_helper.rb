@@ -7,6 +7,15 @@ module OrdersHelper
             false
         end
     end
+    
+
+    def canceled?(order)
+        if order.present? && order.status == "Annulée"
+            true
+        else
+            false
+        end
+    end
 
 
     # Payment
