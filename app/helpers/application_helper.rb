@@ -4,7 +4,37 @@ module ApplicationHelper
 	include OrdersHelper
     
 	
+
+		def product_thumbnail(product)
+		#image = path_to_image('imofy.png')
+		#mini_image = MiniMagick::Image.new(image)
+        if product.thumbnail.attached?
+			#image_tag product.thumbnail.variant(resize: "308x205")
+			image_tag product.thumbnail.variant(combine_options: {resize: "308x205^",  gravity: 'Center', crop: '308x205+0+0' })
+        else
+            image_tag 'thumbnails/post-missing.jpg'
+        end
+	end
+
+	def product_cover_thumbnail(product)
+		#image = path_to_image('imofy.png')
+		#mini_image = MiniMagick::Image.new(image)
+        if product.thumbnail.attached?
+            image_tag product.thumbnail.variant(resize: "700x400")
+        else
+            image_tag 'thumbnails/post-missing.jpg'
+        end
+	end
+
+
+	def current_shopping_cart
+        session[:shopping_cart]
+	end
 	
+	def cart_items_count
+		#shopping_cart = Cart.find(current_shopping_cart.id)
+		@shopping_cart.cart_items.count
+	  end
 
 	def shop_tenant?
 		if Apartment::Tenant.current == "shop"

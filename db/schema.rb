@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_26_184018) do
+ActiveRecord::Schema.define(version: 2022_01_31_080501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,28 @@ ActiveRecord::Schema.define(version: 2022_01_26_184018) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_api_keys_on_account_id"
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "cart_id"
+    t.bigint "food_id"
+    t.bigint "product_id"
+    t.float "quantity", default: 0.0
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["food_id"], name: "index_cart_items_on_food_id"
+    t.index ["product_id"], name: "index_cart_items_on_product_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_carts_on_account_id"
   end
 
   create_table "customer_discounts", force: :cascade do |t|
@@ -437,6 +459,10 @@ ActiveRecord::Schema.define(version: 2022_01_26_184018) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activity_logs", "accounts"
   add_foreign_key "api_keys", "accounts"
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "foods"
+  add_foreign_key "cart_items", "products"
+  add_foreign_key "carts", "accounts"
   add_foreign_key "customer_discounts", "accounts"
   add_foreign_key "customer_discounts", "customers"
   add_foreign_key "customer_fidelity_cards", "accounts"
