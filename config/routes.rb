@@ -177,9 +177,11 @@ get "orders/show/:uid" => "orders#show",as: :show_order
         sign_up: '' 
     }
    
+   # Home route.
+  root to: "front#home"
   #root 'config_options#new'
   devise_scope :account do
-    root to: "accounts/sessions#new"
+    #root to: "accounts/sessions#new"
     authenticated :user do
       root 'dashboard#index', as: :authenticated_root
     end
@@ -194,4 +196,5 @@ get "orders/show/:uid" => "orders#show",as: :show_order
   end
 
   mount API::Base, at: "/"
+  mount Ckeditor::Engine => '/ckeditor'
 end
