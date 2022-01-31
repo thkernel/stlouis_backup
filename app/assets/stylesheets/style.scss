@@ -654,3 +654,117 @@ body {
 .page-wrapper{
     background-color: white !important;
 }
+
+span.tag-item{
+    background-color: #0089ff;
+    padding: 5px;
+    color: white;
+    border-radius: 25px;
+    margin-right: 2px;
+}
+
+
+.setup-wrapper{
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.permission-item{
+    background-color: #0066cc;
+    color: white;
+    padding: 3px;
+    border-radius: 12px;
+    margin-right: 4px;
+}
+
+.sidebar-logo img{
+    width: 100%;
+}
+.signin-logo img {
+    
+
+    width: 136px !important;
+}
+
+
+@media (min-width: 992px) {
+  .br-section-wrapper {
+    padding: 30px ; 
+  }
+}
+
+
+
+
+
+
+#datatable_paginate {
+    margin-left: auto !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    background-color: transparent !important;
+}
+
+.next .page-link, .previous .page-link{
+    width: 100% !important;
+    padding: 11px  !important;
+}
+
+.action-buttons .delete{
+    color: red !important;
+}
+
+.notification-number{
+    color: #fff;
+    width: auto;
+    padding: 0px 5px 0px 5px;
+    /*position: absolute; */
+    top: 1px;
+}
+
+.unreaded-notification{
+    font-weight: bold;
+}
+.tfooter{
+    background-color: #2792f0;
+    color: white;
+}
+.order_payment_status_impayee{
+    
+}
+.order_payment_status_payee{
+    background-color: green;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.order_payment_status_impayee{
+    background-color: orange;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.order_status_confirmee{
+    background-color: green;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.order_status_en-attente{
+    background-color: blue;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.order_status_annulee{
+    background-color: red;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
