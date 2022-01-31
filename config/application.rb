@@ -4,6 +4,7 @@ require 'rails/all'
 require 'apartment/elevators/subdomain' # or 'domain', 'first_subdomain', 'host'
 
 require './lib/shared_utils/utils'
+require './lib/cart/cart'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
