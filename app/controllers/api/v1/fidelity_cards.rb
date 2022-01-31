@@ -37,7 +37,7 @@ module API
 
                 puts "CUSTOMER FIDELITY: #{customer_fidelity_card.inspect}"
                 
-                order = Order.where(customer_id: customer_fidelity_card.customer_id,   paid: "Impayée").first
+                order = Order.where(customer_id: customer_fidelity_card.customer_id,   paid: "Impayée", status: "En attente").first
                 
                 puts "ORDER: #{order.inspect}"
                 if order.present?
