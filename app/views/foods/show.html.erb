@@ -1,49 +1,69 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="product-summary-wrap mg-t-30 mg-b-30">
+    <div class="row">
+      <div class="col-lg-6 summary-before">
+        <div class="product-thumbnails thumbnails">
+          <%= food_cover_thumbnail(@food) %>
+        </div>
+      </div>
 
-<p>
-  <strong>Uid:</strong>
-  <%= @food.uid %>
-</p>
+      <div class="col-lg-6 entry-summary">
 
-<p>
-  <strong>Slug:</strong>
-  <%= @food.slug %>
-</p>
+        
 
-<p>
-  <strong>Name:</strong>
-  <%= @food.name %>
-</p>
+       
+         <h2 class="product-title entry-title ">
+          <%= @food.name %>
+          </h2>
+        
+        <p class="price">
+         
+          <span class="woocommerce-Price-amount amount xof">
+          
+            <%= "#{number_with_precision(@food.price, delimiter: " ", separator: "", precision: 0)} F CFA "  %>
+          </span>
+         
+        </p>
+  
+    
+        
+      <p>
+       
+        
+      </p>
 
-<p>
-  <strong>Min cooking time:</strong>
-  <%= @food.min_cooking_time %>
-</p>
+      <p>
+       
+        <%= @food.status %>
+      </p>
 
-<p>
-  <strong>Max cooking time:</strong>
-  <%= @food.max_cooking_time %>
-</p>
+      <%= form_with(url: add_to_cart_path , method: "get", class: "form-inline") do |form| %>
+        <div class="form-row">
+          <div class="col-auto">
+            <%= form.hidden_field :food , value: @food.uid %>
+          </div>
+          <div class="col-auto">
+            <%= form.number_field :quantity, class: "form-control", value: 1, step: 1,  min: 1, pattern: "[0-9]*",  inputmode: "numeric",  required: true %>
+          </div>
+          <div class="col-auto">
+          <%= form.submit "Ajouter au panier", class: "btn btn-primary",  data: {disable_with: "Ajout au panier ..."}, autocomplete: "off"%>
+          </div>
+        </div>
+      <% end %>
+    
 
-<p>
-  <strong>Price:</strong>
-  <%= @food.price %>
-</p>
+      
+      <!-- ADD TO WISHLIST -->
+      
 
-<p>
-  <strong>Descriptions:</strong>
-  <%= @food.descriptions %>
-</p>
+<span class="ajax-loading"></span>
+      <!-- COUNT TEXT -->
+      
+      </div>  </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Status:</strong>
-  <%= @food.status %>
-</p>
 
-<p>
-  <strong>Account:</strong>
-  <%= @food.account %>
-</p>
-
-<%= link_to 'Edit', edit_food_path(@food) %> |
-<%= link_to 'Back', foods_path %>

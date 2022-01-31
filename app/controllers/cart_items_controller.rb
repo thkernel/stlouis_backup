@@ -22,12 +22,13 @@ class CartItemsController < ApplicationController
   end
 
   def add_to_cart
-    product = Product.find(params[:product])
+    food = Food.find_by(uid: params[:food])
   
+  puts "FOOD: #{food.inspect}"
     
     @cart_item = CartItem.new
     
-    @cart_item.product_id = product.id
+    @cart_item.food_id = food.id
 
     if params[:quantity].present?
       @cart_item.quantity = params[:quantity]
@@ -35,15 +36,15 @@ class CartItemsController < ApplicationController
       @cart_item.quantity = 1 
     end
 
-    @shopping_cart.add_product(@cart_item)
+    @shopping_cart.add_food(@cart_item)
 
     
     respond_to do |format|
       if @shopping_cart.save
         
-        format.html { redirect_to @cart_item, notice: 'Produit ajouté au panier avec succès.' }
+        format.html { redirect_to @cart_item, notice: 'Plat ajouté au panier avec succès.' }
         format.json { render :show, status: :created, location: @cart_item }
-        format.js {flash.now[:notice] = 'Produit ajouté au panier avec succès.'}
+        format.js {flash.now[:notice] = 'Plat ajouté au panier avec succès.'}
       else
         format.html { render :new }
         format.json { render json: @cart_item.errors, status: :unprocessable_entity }
@@ -55,7 +56,7 @@ class CartItemsController < ApplicationController
   # POST /cart_items.json
   def create
     @cart_item = CartItem.new(cart_item_params)
-    @shopping_cart.add_product(@cart_item)
+    @shopping_cart.add_food(@cart_item)
     respond_to do |format|
       if @shopping_cart.save
         

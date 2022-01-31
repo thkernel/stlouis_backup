@@ -25,8 +25,12 @@ class Food < ApplicationRecord
 
   belongs_to :account
   belongs_to :food_category
+  has_many :cart_items, dependent: :destroy
 
 	validates :name, presence: true, uniqueness: true
+
+  has_many_attached :images
+  has_one_attached :thumbnail
 
 
 	# Change default params ID to uid

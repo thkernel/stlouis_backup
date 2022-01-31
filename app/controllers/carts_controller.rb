@@ -12,19 +12,19 @@ class CartsController < ApplicationController
 
   def show
     @cart_items = @shopping_cart.cart_items
-    subtotal = @cart_items.map{ |cart_item| Product.find(cart_item.product_id).selling_price_xof * cart_item.quantity}
+    subtotal = @cart_items.map{ |cart_item| Food.find(cart_item.food_id).price * cart_item.quantity}
     @subtotal = subtotal.sum
     @total = @subtotal
   end
 
-  def add_cart_item_product_quantity
+  def add_cart_item_food_quantity
     cart_item = CartItem.find(params[:id])
     
     cart_item.update_column(:quantity, cart_item.quantity + 1)
     redirect_to show_cart_path
   end
 
-  def remove_cart_item_product_quantity
+  def remove_cart_item_food_quantity
     cart_item = CartItem.find(params[:id])
     
     if cart_item.quantity > 1

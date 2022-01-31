@@ -14,7 +14,7 @@
                             <thead>
                                 <tr>
                                 
-                                    <th scope="col">Produit</th>
+                                    <th scope="col">Plat</th>
                                 
                                     <th scope="col" class="text-center">Quantité</th>
                                     <th scope="col" class="text-right">Prix</th>
@@ -25,14 +25,14 @@
                             <% @cart_items.each do |cart_item| %>
                                 <tr>
                                 
-                                    <td><%= product(cart_item.product_id).name %></td>
+                                    <td><%= cart_item.food.name %></td>
                                     
                                     <td class="text-center">
                                 
 
                                     <div class="input-group mb-3 ">
                                     <div class="input-group-prepend">
-                                        <%= link_to "-", remove_cart_item_product_quantity_path(cart_item.id), class: "btn btn-outline-primary" %>
+                                        <%= link_to "-", remove_cart_item_food_quantity_path(cart_item.id), class: "btn btn-outline-primary" %>
                                     </div>
                                     <div class="cart-item-product-quantity">
                                         
@@ -40,13 +40,13 @@
                                         <input type="text" class="form-control" value="<%= cart_item.quantity %>"  aria-describedby="basic-addon1" readonly>
                                     </div>
                                     <div class="input-group-append">
-                                        <%= link_to "+", add_cart_item_product_quantity_path(cart_item.id), class: "btn btn-outline-primary" %>
+                                        <%= link_to "+", add_cart_item_food_quantity_path(cart_item.id), class: "btn btn-outline-primary" %>
                                     </div>
                                     </div>
                                     
                                     
                                     </td>
-                                    <td class="text-right"><%= "#{number_with_precision(Product.find(cart_item.product_id).selling_price_xof, delimiter: " ", separator: "", precision: 0)} F CFA" %> </td>
+                                    <td class="text-right"><%= "#{number_with_precision(Food.find(cart_item.food_id).price, delimiter: " ", separator: "", precision: 0)} F CFA" %> </td>
                                     <td class="text-right">
                                     
                                         <%= link_to raw('<i class="fa fa-trash"></i>'), cart_item_delete_path(cart_item.id), class: "btn btn-sm btn-danger", remote: true %>

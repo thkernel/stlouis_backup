@@ -5,22 +5,22 @@ module ApplicationHelper
     
 	
 
-		def product_thumbnail(product)
+		def food_thumbnail(food)
 		#image = path_to_image('imofy.png')
 		#mini_image = MiniMagick::Image.new(image)
-        if product.thumbnail.attached?
+        if food.thumbnail.attached?
 			#image_tag product.thumbnail.variant(resize: "308x205")
-			image_tag product.thumbnail.variant(combine_options: {resize: "308x205^",  gravity: 'Center', crop: '308x205+0+0' })
+			image_tag food.thumbnail.variant(combine_options: {resize: "308x205^",  gravity: 'Center', crop: '308x205+0+0' })
         else
             image_tag 'thumbnails/post-missing.jpg'
         end
 	end
 
-	def product_cover_thumbnail(product)
+	def food_cover_thumbnail(food)
 		#image = path_to_image('imofy.png')
 		#mini_image = MiniMagick::Image.new(image)
-        if product.thumbnail.attached?
-            image_tag product.thumbnail.variant(resize: "700x400")
+        if food.thumbnail.attached?
+            image_tag food.thumbnail.variant(resize: "700x400")
         else
             image_tag 'thumbnails/post-missing.jpg'
         end

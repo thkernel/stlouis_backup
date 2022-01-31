@@ -13,6 +13,7 @@ class FoodsController < ApplicationController
 
   # GET /foods/1 or /foods/1.json
   def show
+    render layout: "front"
   end
 
   # GET /foods/new
@@ -77,7 +78,7 @@ class FoodsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_food
-      @food = Food.find_by(uid: params[:id])
+      @food = Food.find_by(uid: params[:uid])
     end
 
     # Only allow a list of trusted parameters through.

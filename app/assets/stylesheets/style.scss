@@ -768,3 +768,234 @@ span.tag-item{
     padding: 5px;
     border-radius: 10px;
 }
+
+
+
+
+
+
+.card-thumbnail {
+    margin-top: -1.25rem;
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+}
+.card-thumbnail img {
+    width: 100%;
+}
+
+.products .product-item {
+    margin-bottom: 15px;
+}
+
+.products .card-title {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.products .card-title a {
+    color: #837e7e;
+}
+
+.card-body .price {
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+.item-footer {
+    padding: 5px 5px;
+    border-top: 1px solid #dce0e0;
+}
+
+.card-body .label {
+    margin-right: 5px;
+}
+.label {
+    border-radius: 2px;
+}
+.label {
+    font-size: 10px;
+    line-height: 11px;
+    font-weight: 500;
+    margin: 0;
+    text-transform: uppercase;
+    padding: 3px 5px;
+    color: #fff;
+    background-color: rgba(0,0,0,0.65);
+}
+
+.single-product .product_title {
+    font-size: 25px;
+    line-height: 30px;
+    color: #21293c !important;
+    margin-bottom: 0.2em;
+}
+.product-title, .product_title a {
+    color: #555;
+}
+
+.product-thumbnails img {
+    width: 100%;
+}
+.product-summary-wrap .price {
+    color: #1d70ba;
+    font-size: 21px;
+    line-height: 21px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+
+.price .xof {
+    display: inline-block;
+    color: #a7a7a7;
+    font-size: .8em;
+    margin-right: .2143em;
+    vertical-align: baseline;
+}
+
+
+.price{
+    color: #bb4812;
+}
+
+form.cart:not(.variations_form) {
+    margin-top: 10px;
+}
+form.cart {
+    margin-bottom: 0px;
+}
+
+.entry-summary .quantity {
+    width: 107px !important;
+    margin-right: 0 !important;
+    display: -webkit-inline-flex;
+    display: -moz-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+.product-summary-wrap .quantity {
+    vertical-align: top;
+}
+div.quantity {
+    display: inline-block;
+    position: relative;
+    width: 4.1429em;
+    margin-right: .8571em;
+}
+
+ .entry-summary .quantity input[type='button'] {
+    cursor: pointer;
+}
+.entry-summary .quantity .minus {
+    width: 30px !important;
+    height: 43px !important;
+    position: initial !important;
+    border: solid 1px #dae2e6;
+    font-size: 20px;
+    color: #8798a2;
+    font-weight: 700;
+    border-radius: 0 !important;
+}
+div.quantity .minus, div.quantity .plus {
+    background: transparent;
+    border-color: #ccc;
+}
+
+ .entry-summary .quantity .qty {
+    width: 44px !important;
+    height: 43px !important;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    color: #21293c;
+    line-height: 14px;
+    border-radius: 0 !important;
+    border-width: 1px 0 1px 0;
+    border-color: #dae2e6;
+    box-shadow: none;
+}
+div.quantity .qty {
+    -moz-appearance: textfield;
+    text-align: center;
+    width: 2.5em;
+    height: 2.7143em;
+    padding-left: 0;
+    padding-right: 0;
+}
+.quantity .qty {
+    color: #777;
+}
+.entry-summary .quantity .plus {
+    width: 30px !important;
+    height: 43px !important;
+    position: initial !important;
+    border: solid 1px #dae2e6;
+    font-size: 20px;
+    color: #8798a2;
+    font-weight: 700;
+    border-radius: 0 !important;
+}
+div.quantity .minus, div.quantity .plus {
+    background: transparent;
+}
+
+// For sticky footer
+html, body {
+    height: 100% !important;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  .page-wrapper {
+    flex: 1 0 auto;
+  }
+  .footer {
+    flex-shrink: 0;
+  }
+  /* end */
+.cart-item-product-quantity{
+    width: 60px;
+}
+.permission-item{
+    background-color: #696c69e0;
+    color: white;
+    padding: 3px;
+    border-radius: 12px;
+    margin-right: 4px;
+}
+.form-group label {
+    
+    font-weight: bold !important;
+    color: #000000bf !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #0000009c !important;
+    font-weight: 700 !important;
+}
+
+.btn-link {
+    font-weight: 700 !important;
+    color: #0866C6 !important;
+   
+}
+
+.dropdown-item {
+   font-weight: 700 !important;
+}
+.products .card-title a {
+    color: #3e3b3b !important;
+}
+.price .xof{
+    color: green !important; 
+    font-size: 0.9rem !important;
+}
+
+.price .euro{
+    color: blue !important; 
+    font-size: 0.9rem !important;
+}
+a.product-name{
+    font-weight: 700 !important;
+}

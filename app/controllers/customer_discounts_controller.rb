@@ -48,6 +48,7 @@ class CustomerDiscountsController < ApplicationController
     respond_to do |format|
       if @customer_discount.update(customer_discount_params)
         @customers = Customer.all
+        @customer_discounts = CustomerDiscount.all
         format.html { redirect_to customer_discount_url(@customer_discount), notice: "Customer discount was successfully updated." }
         format.json { render :show, status: :ok, location: @customer_discount }
         format.js

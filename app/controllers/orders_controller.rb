@@ -92,7 +92,45 @@ class OrdersController < ApplicationController
     #render layout: "pdf"
   end
 
+def complete_order
+   
+    @order = current_account.orders.build 
+    cart_items = @shopping_cart.cart_items                    
+   
+    if cart_items.present?
+  
+      cart_items.each do |cart_item|
+        @order.order_items.build(food_id: cart_item.food_id, price: Food.find(cart_item.food_id).price, quantity: cart_item.quantity)
+      end
+   
+      puts "ORDER: #{@order.inspect}"
+      respond_to do |format|
+        if @order.save
+          
+          @shopping_cart.destroy
+          session.delete(:shopping_cart)
+          
+          format.html { redirect_to order_complete_success_path, notice: 'Order was successfully updated.' }
+          format.json { render :show, status: :ok, location: @order }
+        else
+          puts "ORDER: #{@order.inspect}"
+          format.html { render :order_complete_error}
+        
+          #redirect_to order_complete_error_path
+          
+        end
+      end
+    end
+    
+  end
 
+  def order_complete_success
+    render layout: "front"
+  end
+  def order_complete_error
+    
+    render layout: "front"
+  end
   def paynow
     order = Order.find_by(uid: params[:uid])
     respond_to do |format|

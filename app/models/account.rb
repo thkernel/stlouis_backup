@@ -66,6 +66,7 @@ class Account < ApplicationRecord
    has_many :tenants, dependent: :destroy
    has_many :customer_discounts, dependent: :destroy
    has_many :unities, dependent: :destroy
+   has_many :partners, dependent: :destroy
 
    # Change default params ID to uid
   def to_param

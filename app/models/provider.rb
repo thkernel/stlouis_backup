@@ -49,7 +49,7 @@ class Provider < ApplicationRecord
 
 
   # Validations
-  validates :company_name,   uniqueness: true
+  #validates :company_name,   uniqueness: true
   
 
   def provider_name

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_31_080501) do
+ActiveRecord::Schema.define(version: 2022_01_31_183832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -262,6 +262,25 @@ ActiveRecord::Schema.define(version: 2022_01_31_080501) do
     t.index ["table_id"], name: "index_orders_on_table_id"
   end
 
+  create_table "partners", force: :cascade do |t|
+    t.string "uid"
+    t.string "company_name"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "civility"
+    t.string "address"
+    t.string "city"
+    t.string "country"
+    t.string "phone"
+    t.string "email"
+    t.text "description"
+    t.string "status"
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_partners_on_account_id"
+  end
+
   create_table "permission_items", force: :cascade do |t|
     t.string "uid"
     t.bigint "permission_id"
@@ -483,6 +502,7 @@ ActiveRecord::Schema.define(version: 2022_01_31_080501) do
   add_foreign_key "orders", "accounts"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "tables"
+  add_foreign_key "partners", "accounts"
   add_foreign_key "permission_items", "permissions"
   add_foreign_key "permissions", "features"
   add_foreign_key "permissions", "roles"

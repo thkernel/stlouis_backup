@@ -7,18 +7,26 @@ end
 
 Rails.application.routes.draw do
 
-  #resources :cart_items
+  resources :partners do   
+    get "delete"
+  end
+  
+  resources :cart_items do   
+    get "delete"
+  end
   #resources :carts
+
+
 
   get "add-to-cart" => "cart_items#add_to_cart", as: :add_to_cart
   get "cart" => "carts#show", as: :show_cart
   get "/cart-item/delete/:id" => "cart_items#delete", as: :delete_cart_item
-  get "/cart-item/add/:id" => "carts#add_cart_item_product_quantity", as: :add_cart_item_product_quantity
-  get "/cart-item/remove/:id" => "carts#remove_cart_item_product_quantity", as: :remove_cart_item_product_quantity
+  get "/cart-item/add/:id" => "carts#add_cart_item_food_quantity", as: :add_cart_item_food_quantity
+  get "/cart-item/remove/:id" => "carts#remove_cart_item_food_quantity", as: :remove_cart_item_food_quantity
   get "/complete-order" => "orders#complete_order", as: :complete_order
   get "/order-complete-success" => "orders#order_complete_success", as: :order_complete_success
   get "/order-complete-error" => "orders#order_complete_error", as: :order_complete_error
-
+ get "/food/:uid" => "foods#show", as: :food_show
 
 
   resources :customer_discounts, path: "customer-discounts" do   

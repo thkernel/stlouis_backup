@@ -13,7 +13,7 @@ module ShoppingCart
         def add_to_cart(product)
             
             # Create a new item
-            cart_item = CartItem.new(product.id,product.selling_price_xof)
+            cart_item = CartItem.new(food.id,food.price)
 
             @@cart_content.push(cart_item)
 
@@ -40,11 +40,11 @@ module ShoppingCart
 
     # Cart Item class
     class CartItem
-        attr_accessor :product_id, :product_name,  :quantity, :price
+        attr_accessor :food_id, :food_name,  :quantity, :price
         
-        def initialize(product_id, product_name, price, quantity = 1)
-            @product_id = produc_id
-            @product_name = product_name
+        def initialize(food_id, food_name, price, quantity = 1)
+            @food_id = produc_id
+            @food_name = food_name
             @price = price
             @quantity = quantity
         end

@@ -34,7 +34,7 @@ class Cart < ApplicationRecord
     def add_food(cart_item)
       
        
-        current_item = CartItem.where("food_id = ? AND cart_id = ?",  cart_item.product_id, self.id).take
+        current_item = CartItem.where("food_id = ? AND cart_id = ?",  cart_item.food_id, self.id).take
         
         if current_item.present?
            
@@ -43,7 +43,7 @@ class Cart < ApplicationRecord
             
         else
            
-            new_item = CartItem.create(food_id: cart_item.product_id, quantity: cart_item.quantity, cart_id: self.id, )
+            new_item = CartItem.create(food_id: cart_item.food_id, quantity: cart_item.quantity, cart_id: self.id, )
             
         end
         new_item
