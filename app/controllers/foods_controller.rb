@@ -16,6 +16,15 @@ class FoodsController < ApplicationController
     render layout: "front"
   end
 
+  def shop 
+    @foods = Food.order(created_at: :desc).paginate(:page => params[:page], :per_page => 9)
+    render layout: "front"
+  end
+
+  def all_foods
+    @foods = Food.paginate(:page => params[:page], :per_page => 6)
+  end
+
   # GET /foods/new
   def new
     @food_categories = FoodCategory.all

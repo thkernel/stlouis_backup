@@ -15,8 +15,8 @@ Rails.application.routes.draw do
     get "delete"
   end
   #resources :carts
-
-
+  get "shop" => "foods#shop" , as: :shop
+  get "foods/all" => "foods#all_foods", as: :all_foods
 
   get "add-to-cart" => "cart_items#add_to_cart", as: :add_to_cart
   get "cart" => "carts#show", as: :show_cart

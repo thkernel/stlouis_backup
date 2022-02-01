@@ -13,9 +13,12 @@
 		<% end %> 
 	</div>
 
-	<div class="row load-more">
-		<%= will_paginate @foods, previous_label: "Précédent",next_label: "Suivant",  renderer: BootstrapPagination::Rails, class: "pagination load-more-button" %> 
-	</div>
+	
+
+  <div class="text-center">
+   
+    <%= link_to "Voir plus", shop_path, class: "btn btn-outline-primary"%>
+  </div>
        
     </div>
 </section>
