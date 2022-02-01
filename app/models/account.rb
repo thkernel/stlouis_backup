@@ -68,6 +68,9 @@ class Account < ApplicationRecord
    has_many :unities, dependent: :destroy
    has_many :partners, dependent: :destroy
 
+
+   has_many :recipient_notifications, :class_name => "Notification", :foreign_key => :recipient_id
+   
    # Change default params ID to uid
   def to_param
     uid

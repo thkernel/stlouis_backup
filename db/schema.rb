@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_31_183832) do
+ActiveRecord::Schema.define(version: 2022_02_01_105050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,6 +211,21 @@ ActiveRecord::Schema.define(version: 2022_01_31_183832) do
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_foods_on_account_id"
     t.index ["food_category_id"], name: "index_foods_on_food_category_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "uid"
+    t.string "nature"
+    t.bigint "recipient_id"
+    t.text "content"
+    t.string "status"
+    t.datetime "readed_at"
+    t.string "notificable_type"
+    t.bigint "notificable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notificable_type", "notificable_id"], name: "index_notifications_on_notificable_type_and_notificable_id"
+    t.index ["recipient_id"], name: "index_notifications_on_recipient_id"
   end
 
   create_table "order_item_drinks", force: :cascade do |t|

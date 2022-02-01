@@ -85,114 +85,30 @@ module ApplicationHelper
 		end
 	end
 
-	def current_organization
 	
-		organization = current_user.organization
-		if organization.present?
-			organization
-		end
-	end
 
 	def get_account(acount_id)
 		account = Account.find(user_id)
 	end
 
-	def poll_thumbnail(poll)
-		#image = path_to_image('imofy.png')
-		#mini_image = MiniMagick::Image.new(image)
-        if poll.cover.attached?
-			#image_tag poll.cover.variant(resize: "308x205")
-			image_tag poll.cover.variant(combine_options: {resize: "308x205^",  gravity: 'Center', crop: '308x205+0+0' })
-        else
-            image_tag 'thumbnails/post-missing.jpg'
-        end
-	end
-
-	def poll_cover_thumbnail(poll)
-		#image = path_to_image('imofy.png')
-		#mini_image = MiniMagick::Image.new(image)
-        if poll.cover.attached?
-            image_tag poll.cover.variant(combine_options: {resize: "700x400^",  gravity: 'Center', crop: '700x400+0+0'})
-        else
-            image_tag 'thumbnails/post-missing.jpg'
-        end
-	end
-
-	def poll_item_thumbnail(poll_item)
-		#image = path_to_image('imofy.png')
-		#mini_image = MiniMagick::Image.new(image)
-        if poll_item.image.attached?
-			#image_tag poll.cover.variant(resize: "308x205")
-			image_tag poll_item.image.variant(combine_options: {resize: "308x205^",  gravity: 'Center', crop: '308x205+0+0' })
-        else
-            image_tag 'thumbnails/post-missing.jpg'
-        end
-	end
-
-	def poll_item_cover_thumbnail(poll_item)
-		#image = path_to_image('imofy.png')
-		#mini_image = MiniMagick::Image.new(image)
-        if poll_item.image.attached?
-            image_tag poll_item.image.variant(combine_options: {resize: "700x400^",  gravity: 'Center', crop: '700x400+0+0'})
-        else
-            image_tag 'thumbnails/post-missing.jpg'
-        end
-	end
-	def sidebar_poll_item_thumbnail(poll_item, width)
-       
-           
-        if poll_item.present? && poll_item.image.attached?
-            image_tag poll_item.image,  class: "wd-#{width} ht-#{width} rounded-circle", alt: "Avatar"
-        else
-
-            image_tag 'thumb/missing.png',  class: "wd-#{width} ht-#{width} rounded-circle", alt: "Avatar"
-        end
-     
-	end
-	def opinion_user_thumbnail(opinion, width)
-       
-           
-        if opinion.user.present? && opinion.user.profile.avatar.attached?
-            image_tag optinion.user.profile.avatar,  class: "wd-#{width} ht-#{width} rounded-circle", alt: "Avatar"
-        else
-
-            image_tag 'thumb/missing.png',  class: "wd-#{width} ht-#{width} rounded-circle", alt: "Avatar"
-        end
-     
-	end
-	def voting_user_thumbnail(voting, width)
-       
-           
-        if voting.user.present? && voting.user.profile.avatar.attached?
-            image_tag voting.user.profile.avatar,  class: "wd-#{width} ht-#{width} rounded-circle", alt: "Avatar"
-        else
-
-            image_tag 'thumb/missing.png',  class: "wd-#{width} ht-#{width} rounded-circle", alt: "Avatar"
-        end
-     
-    end
-
-	def priority(id)
-		Priority.find(id)
-	end
-
-	def task_status(id)
-		TaskStatus.find(id)
-	end
-	
-	def user_notifications
-		current_user.recipient_notifications.order(created_at: 'DESC').take(5)
-	end
-
-	def imputable_type(imputation)
-		if imputation.imputable_type == "ArrivalMail"
-			"Réf. courrier: #{ArrivalMail.find(imputation.imputable_id).internal_reference}"
-		elsif imputation.imputable_type == "Request"
-			"Réf. demande: #{Request.find(imputation.imputable_id).uid}"
-
+	def unreaded_notification?(notification)
+		if notification.readed_at.present?
+			false
+		else
+			true
 		end
 	end
 
+
+	
+	
+
+	
+	def user_notifications
+		current_account.recipient_notifications.order(created_at: 'DESC').take(5)
+	end
+
+	
 
 
 	def is_account_locked?(account)
@@ -230,24 +146,7 @@ module ApplicationHelper
 		# We use string interpolation "#{key}" here to access the CSS classes we are going to create.
 	end
 
-	def commented_for(poll_item)
-		comments = poll_item.comments
-	end
-
-	def poll_opened(poll_id)
-		poll = Poll.find(poll_id)
-		if poll.status.present? && poll.status == "En cours"
-			true
-		else
-			false 
-		end
-	end
-
 	
-
-
-	
-
 
 
 

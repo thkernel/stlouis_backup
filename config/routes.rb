@@ -7,6 +7,7 @@ end
 
 Rails.application.routes.draw do
 
+  resources :notifications
   resources :partners do   
     get "delete"
   end
