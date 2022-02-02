@@ -19,7 +19,8 @@ class User < ApplicationRecord
 
   before_save :generate_random_number_uid
 
-  belongs_to :role
+  #belongs_to :role
+  has_one :account, as: :accountable
 # For active storage
   has_one_attached :avatar
 

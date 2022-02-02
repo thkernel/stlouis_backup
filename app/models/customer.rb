@@ -30,7 +30,9 @@ class Customer < ApplicationRecord
 
   before_save :generate_random_number_uid
 
-  belongs_to :account
+  has_one :account, as: :accountable
+  accepts_nested_attributes_for :account
+  #belongs_to :account
   has_many :orders, dependent: :destroy
   
   # Validations
