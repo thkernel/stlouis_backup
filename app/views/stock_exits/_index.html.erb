@@ -1,6 +1,6 @@
 <% @stock_exits.each do |stock_exit| %>
       <tr>
-        
+        <td><%= stock_exit.created_at.strftime("%d/%m/%Y") %></td>
         <td><%= stock_exit.product.name %></td>
         <td><%= stock_exit.reason %></td>
         <td><%= stock_exit.quantity %></td>
