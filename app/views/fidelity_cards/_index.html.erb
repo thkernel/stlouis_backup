@@ -1,5 +1,6 @@
 <% @fidelity_cards.each do |fidelity_card| %>
   <tr>
+  	<td><%= fidelity_card.created_at.strftime("%d/%m/%Y") %></td>
     <td><%= fidelity_card.uid %></td>
     <td><%= fidelity_card.balance %></td>
     <td><%= fidelity_card.status %></td>
