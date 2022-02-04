@@ -45,8 +45,8 @@ class Account < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-# Relationships
-  belongs_to :accountable, polymorphic: true, optional: true
+  # Relationships
+   belongs_to :accountable, polymorphic: true, optional: true
 
    belongs_to :role
 

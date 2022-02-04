@@ -14,7 +14,7 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
   def new
     # Override Devise default behaviour and create a profile as well
     build_resource({})
-    @customer = Customer.new
+    
     
     #resource.build_customer
     respond_with self.resource
@@ -27,25 +27,31 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
 
 
   def create
-    puts "SIGNUP PARAMS: #{sign_up_params.inspect}"
-    puts "CUSTOMER: #{sign_up_params[:customer]}"
+    
+    
+      customer_params = sign_up_params[:customer]
+      
       
       role_id = sign_up_params[:role_id]
 
-      
+      new_sign_up_params = sign_up_params.except(:customer)
 
+      puts "DATA: #{sign_up_params.inspect}"
       unless role_id.present?
-        build_resource(sign_up_params.merge(role_id: Role.find_by(name: "Client").id))
+        build_resource(new_sign_up_params.merge(role_id: Role.find_by(name: "Client").id))
       end
 
-      customer = Customer.create(sign_up_params[:customer])
+      customer = Customer.new(customer_params)
 
-      customer.build_account(resource)
-
-      #resource.save
+      puts "CUSTOMER AFTER CREATE: #{customer.inspect}"
+      #customer.build_account(resource)
+      if customer.valid? && resource.valid?
+        customer.save
+        resource.accountable = customer
+        resource.save
         
-
-      puts "RESOURCE: #{resource.id}"
+      end
+      puts "RESOURCE: #{resource.inspect}"
 
       yield resource if block_given?
       if resource.persisted?
@@ -99,7 +105,7 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
 
   def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [customer: [ :first_name, :last_name, :civility, :city, :phone ]])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [customer: [:first_name, :last_name, :civility, :phone, :city]])
     #devise_parameter_sanitizer.permit(:account_update, keys: [:login, :company, :city, :address, :phone, :avatar])
    end
 
