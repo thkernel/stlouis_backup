@@ -5,62 +5,15 @@
     <a class="nav-link active" id="actees-produites-tab" data-toggle="tab" href="#actees-produites" role="tab" aria-controls="actees-produites" aria-selected="false">ACTES & PRODUITS</a>
   </li>
 
-  <li class="nav-item">
-    <a class="nav-link " id="tarte-tab" data-toggle="tab" href="#tarte" role="tab" aria-controls="tarte" aria-selected="true">TARTE</a>
-  </li>
   
-  <li class="nav-item">
-    <a class="nav-link" id="emprunt-mensuel-tab" data-toggle="tab" href="#emprunt-mensuel" role="tab" aria-controls="emprunt-mensuel" aria-selected="false">EMPRUNT MENSUEL</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="commission-mensuelle-apporteur-tab" data-toggle="tab" href="#commission-mensuelle-apporteur" role="tab" aria-controls="commission-mensuelle-apporteur" aria-selected="false">COM MENSUELLE APPO</a>
-  </li>
-   <li class="nav-item">
-    <a class="nav-link" id="commission-mensuelle-producteur-tab" data-toggle="tab" href="#commission-mensuelle-producteur" role="tab" aria-controls="commission-mensuelle-producteur" aria-selected="false">COM MENSUELLE PROD</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="commission-mensuelle-banque-tab" data-toggle="tab" href="#commission-mensuelle-banque" role="tab" aria-controls="commission-mensuelle-banque" aria-selected="false">COM MENSUELLE BANQUE </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="commission-mensuelle-compagnie-tab" data-toggle="tab" href="#commission-mensuelle-compagnie" role="tab" aria-controls="commission-mensuelle-compagnie" aria-selected="false">COM MENSUELLE <%= current_company.name %> </a>
-  </li>
-  
-
-  <li class="nav-item">
-    <a class="nav-link" id="productions-tab" data-toggle="tab" href="#productions" role="tab" aria-controls="productions" aria-selected="false">PRODUCTIONS</a>
-  </li>
  
 </ul>
 <div class="tab-content" id="myTabContent">
 
   <div class="tab-pane fade show active" id="actees-produites" role="tabpanel" aria-labelledby="actees-produites-tab">
-   <%= render "search/partials/subpartials/acted_products" %>
+   <%= render "search/partials/subpartials/charts" %>
   </div>
 
-  <div class="tab-pane fade " id="tarte" role="tabpanel" aria-labelledby="tarte-tab">
-      <%= render "search/partials/subpartials/tarte" %>
-
-  </div>
   
-  <div class="tab-pane fade" id="emprunt-mensuel" role="tabpanel" aria-labelledby="emprunt-mensuel-tab">
-    <%= render "search/partials/subpartials/emprunt_mensuel" %>
-  </div>
-  <div class="tab-pane fade" id="commission-mensuelle-apporteur" role="tabpanel" aria-labelledby="commission-mensuelle-apporteur-tab">
-    <%= render "search/partials/subpartials/commission_mensuelle_apporteur" %>
-  </div>
-   <div class="tab-pane fade" id="commission-mensuelle-producteur" role="tabpanel" aria-labelledby="commission-mensuelle-producteur-tab">
-    <%= render "search/partials/subpartials/commission_mensuelle_producteur" %>
-  </div>
-  <div class="tab-pane fade" id="commission-mensuelle-banque" role="tabpanel" aria-labelledby="commission-mensuelle-banque-tab">
-    <%= render "search/partials/subpartials/commission_mensuelle_banque" %>
-  </div>
-   <div class="tab-pane fade" id="commission-mensuelle-compagnie" role="tabpanel" aria-labelledby="commission-mensuelle-compagnie-tab">
-    <%= render "search/partials/subpartials/commission_mensuelle_compagnie" %>
-  </div>
-  
-
-   <div class="tab-pane fade" id="productions" role="tabpanel" aria-labelledby="productions-tab">
-   <%= render "search/partials/subpartials/productions" %>
-  </div>
 </div>
 </div>

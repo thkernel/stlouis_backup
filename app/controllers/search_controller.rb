@@ -37,6 +37,13 @@ class SearchController < ApplicationController
 
     puts "TOTAL: #{@total}"
 
+
+    order_items = @orders.map { |order|  order.order_items}.flatten
+
+    puts "ORDERS ITEMS: #{order_items.inspect}"
+
+    #@food_charts = order_items.group(:food_id).sum(:quantity)
+
   end
 
   def search

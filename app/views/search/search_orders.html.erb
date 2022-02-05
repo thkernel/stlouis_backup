@@ -9,12 +9,22 @@
         <%= render "search/partials/search-form" %>
         <center>
         <%= link_to "Réinitialiser la recherche", search_orders_path() %>
-        </center>
-                    
-                
-            
+        </center>  
     
         <div class="headers mg-b-20">
+        </div>
+
+         <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Statistiques</h2>
+                    </div>
+                    <div class="panel-body">
+                      <%= render "search/partials/tabs" %>
+                    </div> 
+                </div>
+            </div>
         </div>
        
         
