@@ -17,8 +17,8 @@ Apartment.configure do |config|
   # A typical example would be a Customer or Tenant model that stores each Tenant's information.
   #
 
-  # Tables publics
-  config.excluded_models = %w{ Tenant Account User Role  Provider  Table RechargeFidelityCard Permission Feature PermissionItem  FidelityCard CustomerFidelityCard ApiKey}
+  # Tables publiques
+  config.excluded_models = %w{ Tenant Account User Role  Table RechargeFidelityCard Permission Feature PermissionItem  FidelityCard CustomerFidelityCard ApiKey}
   #config.excluded_models = %w{ Account }
   
 
