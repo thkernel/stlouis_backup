@@ -35,6 +35,15 @@ class SearchController < ApplicationController
 
     @total = @orders.sum(:total)
 
+    puts "OLL ORDERS: #{@orders.inspect}"
+
+    @order_items = OrderItem.where(order_id: @orders.map(&:id)).joins(:food)
+    #@order_items = OrderItem.joins(:food)#.where(id: @orders.map(&:id))
+    #@order_items = @orders.collect {|order| order.order_items}.class#.flatten
+    puts "ORDER ITEMS: #{@order_items.inspect}"
+    @food_chart_pie = @order_items.unscope(:order).group("foods.name").sum("quantity")
+    #@commissions_chart_pie_by_company_commission = @commissions.unscope(:order).group(:bank_name).sum(:company_commission)
+
     puts "TOTAL: #{@total}"
 
 
