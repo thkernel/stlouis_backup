@@ -9,7 +9,6 @@
    
       <div class="row">
         <div class="col-md-12">
-
           <div class="form-group customSelect">
             <%= form.label :product_id, "Produit", class: "required" %>
             <%= form.collection_select(:product_id, @products, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
@@ -26,7 +25,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <%= form.label :quantity, "Quantité", class: "required" %>
-            <%= form.number_field :quantity, class: "form-control", required: true %>
+            <%= form.number_field :quantity, class: "form-control", min: "1",  required: true %>
           </div>
         </div>
 
