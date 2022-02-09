@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
    #authorize_resource, except: :food
-   load_and_authorize_resource :except => [:food, :product]
+   load_and_authorize_resource :except => [:food, :product, :paynow]
    
   before_action :authenticate_account!
   layout "dashboard"
@@ -110,7 +110,7 @@ def complete_order
           @shopping_cart.destroy
           session.delete(:shopping_cart)
           
-          format.html { redirect_to order_complete_success_path, notice: 'Order was successfully updated.' }
+          format.html { redirect_to order_complete_success_path, notice: 'Commande envoyée avec succès.' }
           format.json { render :show, status: :ok, location: @order }
         else
           puts "ORDER: #{@order.inspect}"
@@ -136,7 +136,7 @@ def complete_order
     respond_to do |format|
       if order.update_columns(paid: "Payée", status: "Confirmée", payment_method: "Espèce" , account_id: current_account.id)
 
-        format.html { redirect_to orders_path, notice: "Order was successfully created." }
+        format.html { redirect_to orders_path, notice: "Commande payée avec succès." }
         format.json { render :show, status: :created, location: @order }
       end
       
@@ -187,7 +187,7 @@ def complete_order
     @order.update_column(:status, "Annulée")
 
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: "Order was successfully canceled." }
+      format.html { redirect_to orders_url, notice: "Commande annulée avec succès." }
       format.json { head :no_content }
     end
   end
