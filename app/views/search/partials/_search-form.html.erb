@@ -19,7 +19,7 @@
 
             <div class="col-md-4">
                 <div class="form-group customSelect">
-                    <%= f.label "Caisier" %>
+                    <%= f.label "Caissier/Serveurs" %>
                     
                     
                     <%= f.collection_select(:account, @accounts, :id, :login , {prompt: "Sélectionner", selected: (@selected_account if @selected_account.present?)},class: "form-control") %> 

@@ -28,10 +28,12 @@ class SearchController < ApplicationController
 
 
     @orders = Order.search(start_date, end_date, account).where.not(status: "Annulée")#.paginate(:page => params[:page], :per_page => 15) #if Credit.search(bank_name).present?
+    @card_recharges = RechargeFidelityCard.search(start_date, end_date).where.not(status: "Annulée")
 
     @total_espece = @orders.where(paid: "Payée").where(payment_method: "Espèce").sum(:total)
     @total_carte = @orders.where(paid: "Payée").where(payment_method: "Carte de fidélité").sum(:total)
     @total_impayee = @orders.where(paid: "Impayée").sum(:total)
+    @total_card_recharges = @card_recharges.sum(:amount)
 
     @total = @orders.sum(:total)
 
