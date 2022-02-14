@@ -1,14 +1,15 @@
 <div class="search-form">
     <%= form_with url: search_orders_path, method: :get, local: true, class: "form-inlinee" do |f| %>
         <div class="row">
+
             <div class="col-md-4">
                 <div class="form-group">
                     <%= f.label "Date début" %>
                     <%= f.date_field :start_date, id: :start_date, class: "form-control ", value: @selected_start_date  %>
 
                 </div>
-
             </div>
+
             <div class="col-md-4">
                 <div class="form-group">
                     <%= f.label "Date fin" %>
@@ -19,7 +20,7 @@
 
             <div class="col-md-4">
                 <div class="form-group customSelect">
-                    <%= f.label "Caissier/Serveurs" %>
+                    <%= f.label "Caissier/Serveur" %>
                     
                     
                     <%= f.collection_select(:account, @accounts, :id, :login , {prompt: "Sélectionner", selected: (@selected_account if @selected_account.present?)},class: "form-control") %> 

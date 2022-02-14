@@ -1,7 +1,8 @@
 <% @orders.each do |order| %>
   <tr>
+     <td><%= order.created_at.strftime("%d/%m/%Y") %></td>
     <td><%= order.uid %></td>
-    <td><%= order.created_at.strftime("%d/%m/%Y") %></td>
+   
     <td><%= order.customer.customer_name %></td>
     <td><%= order.table.name if order.table.present? %></td>
     <td><%= order.total %></td>
