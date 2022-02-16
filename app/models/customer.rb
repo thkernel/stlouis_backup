@@ -31,9 +31,12 @@ class Customer < ApplicationRecord
   before_save :generate_random_number_uid
 
   has_one :account, as: :accountable
+  has_one :customer_social_case, dependent: :destroy
   #accepts_nested_attributes_for :account
   #belongs_to :account
   has_many :orders, dependent: :destroy
+
+
   
 
   has_one_attached :avatar

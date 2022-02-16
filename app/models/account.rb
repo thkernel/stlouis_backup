@@ -65,7 +65,9 @@ class Account < ApplicationRecord
    has_many :orders, dependent: :destroy
    has_many :tenants, dependent: :destroy
    has_many :customer_discounts, dependent: :destroy
+   has_many :customer_social_cases, dependent: :destroy
    has_many :unities, dependent: :destroy
+   has_many :time_units, dependent: :destroy
    has_many :partners, dependent: :destroy
 
 
