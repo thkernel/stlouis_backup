@@ -7,6 +7,7 @@ end
 
 Rails.application.routes.draw do
 
+  get "features/send-sms" => "features#sms_send", as: :sms_send
   resources :customer_social_cases, path: "customer-social-cases" do   
     get "delete"
   end

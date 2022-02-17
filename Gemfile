@@ -119,7 +119,7 @@ gem 'activerecord-session_store', '~> 1.1', '>= 1.1.3'
 gem 'wkhtmltopdf-binary', '~> 0.12.6.5' # Wecked PDF requirement.
 #gem 'wicked_pdf', '~> 2.1' # For generate PDF.
 gem 'wicked_pdf', git: 'https://github.com/mileszs/wicked_pdf', branch: 'master'
-
+gem 'orange_sms', '~> 0.1.1'
 
 # This gem causes db:create to fail
 # You can enable it for tests as long as the db has been created
