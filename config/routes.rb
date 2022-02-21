@@ -7,7 +7,16 @@ end
 
 Rails.application.routes.draw do
 
-  resources :notifications
+  get "features/send-sms" => "features#sms_send", as: :sms_send
+  resources :customer_social_cases, path: "customer-social-cases" do   
+    get "delete"
+  end
+  resources :time_units, path: "time-units" do   
+    get "delete"
+  end
+  resources :notifications do   
+    get "delete"
+  end
   resources :partners do   
     get "delete"
   end

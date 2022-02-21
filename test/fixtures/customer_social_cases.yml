@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  customer: one
+  dish_number: 1
+  time_unit: one
+  status: MyString
+  account: one
+
+two:
+  uid: MyString
+  customer: two
+  dish_number: 1
+  time_unit: two
+  status: MyString
+  account: two

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_01_105050) do
+ActiveRecord::Schema.define(version: 2022_02_16_140607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,6 +143,20 @@ ActiveRecord::Schema.define(version: 2022_02_01_105050) do
     t.index ["fidelity_card_id"], name: "index_customer_fidelity_cards_on_fidelity_card_id"
   end
 
+  create_table "customer_social_cases", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "customer_id"
+    t.integer "dish_number"
+    t.bigint "time_unit_id"
+    t.string "status"
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_customer_social_cases_on_account_id"
+    t.index ["customer_id"], name: "index_customer_social_cases_on_customer_id"
+    t.index ["time_unit_id"], name: "index_customer_social_cases_on_time_unit_id"
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "uid"
     t.string "company_name"
@@ -251,7 +265,6 @@ ActiveRecord::Schema.define(version: 2022_02_01_105050) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "product_id"
-    t.float "discount", default: 0.0
     t.index ["food_id"], name: "index_order_items_on_food_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
@@ -272,6 +285,7 @@ ActiveRecord::Schema.define(version: 2022_02_01_105050) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "vip_space", default: false
+    t.boolean "social_case", default: false
     t.index ["account_id"], name: "index_orders_on_account_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["table_id"], name: "index_orders_on_table_id"
@@ -364,7 +378,6 @@ ActiveRecord::Schema.define(version: 2022_02_01_105050) do
     t.string "street"
     t.string "po_box"
     t.string "zip_code"
-    t.string "email"
     t.string "description"
     t.string "status"
     t.bigint "account_id"
@@ -469,6 +482,17 @@ ActiveRecord::Schema.define(version: 2022_02_01_105050) do
     t.index ["account_id"], name: "index_tenants_on_account_id"
   end
 
+  create_table "time_units", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.string "description"
+    t.string "status"
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_time_units_on_account_id"
+  end
+
   create_table "unities", force: :cascade do |t|
     t.string "uid"
     t.string "name"
@@ -504,6 +528,9 @@ ActiveRecord::Schema.define(version: 2022_02_01_105050) do
   add_foreign_key "customer_fidelity_cards", "accounts"
   add_foreign_key "customer_fidelity_cards", "customers"
   add_foreign_key "customer_fidelity_cards", "fidelity_cards"
+  add_foreign_key "customer_social_cases", "accounts"
+  add_foreign_key "customer_social_cases", "customers"
+  add_foreign_key "customer_social_cases", "time_units"
   add_foreign_key "customers", "accounts"
   add_foreign_key "fidelity_cards", "accounts"
   add_foreign_key "food_categories", "accounts"
@@ -538,5 +565,6 @@ ActiveRecord::Schema.define(version: 2022_02_01_105050) do
   add_foreign_key "stock_exits", "unities"
   add_foreign_key "tables", "accounts"
   add_foreign_key "tenants", "accounts"
+  add_foreign_key "time_units", "accounts"
   add_foreign_key "unities", "accounts"
 end

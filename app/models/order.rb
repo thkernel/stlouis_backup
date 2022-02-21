@@ -35,6 +35,7 @@ class Order < ApplicationRecord
 
   validates_with OrderItemDrinksValidator::OrderItemDrinksValidator
   validates_with OrderItemsValidator::OrderItemsValidator
+  validates_with CustomerSocialCaseValidator::CustomerSocialCaseValidator
 
   accepts_nested_attributes_for :order_items ,  allow_destroy: true , :reject_if => :no_order_items
   accepts_nested_attributes_for :order_item_drinks ,  allow_destroy: true , :reject_if => :no_order_item_drinks

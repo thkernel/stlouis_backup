@@ -17,6 +17,12 @@ class FeaturesController < ApplicationController
   def show
   end
 
+  def send_sms
+    client = OrangeSms::Client.new(:mli) # Ivory coast code
+    client.send_sms('70471135', 'Simple comme bonjour !')
+    redirect_to root_path
+  end
+
   # GET /features/new
   def new
     Rails.application.eager_load!
