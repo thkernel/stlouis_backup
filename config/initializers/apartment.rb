@@ -18,7 +18,7 @@ Apartment.configure do |config|
   #
 
   # Tables publiques
-  config.excluded_models = %w{ Tenant Account User Role  Table  Permission Feature PermissionItem   ApiKey}
+  config.excluded_models = %w{ Tenant}
   #config.excluded_models = %w{ Account }
   
 

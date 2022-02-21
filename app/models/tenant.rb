@@ -55,8 +55,8 @@ include SharedUtils::Generate
     # Create tenant db
 	def create_tenant 
 		Apartment::Tenant.create(self.tenant_name) # Create tenant db
-        #default_data(self.tenant_name) # Load default data
-        #create_administrator(self.tenant_name) # Create default admin
+        default_data(self.tenant_name) # Load default data
+        #create_superuser(self.tenant_name) # Create default admin
         
 		
 	end
@@ -73,6 +73,36 @@ include SharedUtils::Generate
 	def create_subdomain
 	end
 
+    # Create administrator account onto db
+    def create_superuser(tenant)
+
+        #Generate password string
+        random_password = SecureRandom.alphanumeric(10)
+        
+        #Switch to the current tenant
+        Apartment::Tenant.switch(tenant) do
+            # Get all enable record in bank_commission_rate_tracker table.
+            admin_user = Account.create({
+                login: "superuser",
+                email: "superuser@gmail.com",
+                password: "AMOSXZIBITDE88",
+                password_confirmation: "AMOSXZIBITDE88",
+                role_id: Role.find_by(name: "Superuser").id
+            })
+
+            if admin_user.present?
+                #profile = Profile.new
+                #profile.user_id = admin_user.id
+                #profile.save
+
+                #if profile.present?
+                    #create_organization(tenant, admin_user.id)
+                    #TenantEmailJob.perform_now(self, "demo@2021")
+                #end
+            end
+        end
+    end
+
 	# Create administrator account onto db
 	def create_administrator(tenant)
 
@@ -83,9 +113,10 @@ include SharedUtils::Generate
 		Apartment::Tenant.switch(tenant) do
             # Get all enable record in bank_commission_rate_tracker table.
             admin_user = Account.create({
-            	email: self.email,
-            	password: "demo@2021",
-            	password_confirmation: "demo@2021",
+                login: "administrateur",
+            	email: "administrator@gmail.com",
+            	password: "AMOSXZIBITDE88",
+            	password_confirmation: "AMOSXZIBITDE88",
             	role_id: Role.find_by(name: "Administrateur").id
             })
 
@@ -95,7 +126,7 @@ include SharedUtils::Generate
 	            #profile.save
 
                 #if profile.present?
-                    create_organization(tenant, admin_user.id)
+                    #create_organization(tenant, admin_user.id)
                     #TenantEmailJob.perform_now(self, "demo@2021")
                 #end
             end
