@@ -30,6 +30,9 @@ class Product < ApplicationRecord
   belongs_to :provider, optional: true
   belongs_to :unity
   belongs_to :account
+  has_many :stock_entries,  dependent: :destroy
+  has_many :stock_exits,  dependent: :destroy
+
 
 
   validates :name, presence: true, uniqueness: true

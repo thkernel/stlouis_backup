@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_140607) do
   create_table "customer_social_cases", force: :cascade do |t|
     t.string "uid"
     t.bigint "customer_id"
-    t.integer "dish_number"
+    t.integer "dish_number", default: 0
     t.bigint "time_unit_id"
     t.string "status"
     t.bigint "account_id"
@@ -265,6 +265,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_140607) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "product_id"
+    t.float "discount", default: 0.0
     t.index ["food_id"], name: "index_order_items_on_food_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
@@ -378,6 +379,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_140607) do
     t.string "street"
     t.string "po_box"
     t.string "zip_code"
+    t.string "email"
     t.string "description"
     t.string "status"
     t.bigint "account_id"

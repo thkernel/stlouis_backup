@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
   # GET /orders or /orders.json
   def index
 
-    if current_account.superuser? || current_account.admin?
+    if current_account.superuser? || current_account.admin? || current_account.superviseur? || current_account.gerant?
 
       @orders = Order.all
     else

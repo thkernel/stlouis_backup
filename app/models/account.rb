@@ -91,21 +91,37 @@ class Account < ApplicationRecord
     end
   end
   
-    def admin?
-      if self.role.name == "Administrateur"
-        true 
-      else
-        false
-      end
+  def admin?
+    if self.role.name == "Administrateur"
+      true 
+    else
+      false
     end
+  end
+
+  def superviseur?
+    if self.role.name == "Superviseur"
+      true 
+    else
+      false
+    end
+  end
+
+  def gerant?
+    if self.role.name == "Gérant"
+      true 
+    else
+      false
+    end
+  end
   
-    def user?
+  def user?
     if self.role.name == "user"
       true 
     else
       false
     end
-    end
+  end
   
     def guest?
     if self.role.name == "guest"
