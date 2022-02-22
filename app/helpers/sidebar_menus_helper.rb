@@ -16,6 +16,8 @@ module SidebarMenusHelper
 			render "layouts/partials/dashboard/navs/serveur-nav" 
 	    elsif current_account.role.name == "Livreur" 
 	    	render "layouts/partials/dashboard/navs/livreur-nav" 
+	    elsif current_account.role.name == "Client" 
+	    	render "layouts/partials/dashboard/navs/client-nav" 
         end
     end
 
