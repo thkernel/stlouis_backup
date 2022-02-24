@@ -14,6 +14,9 @@ class OrdersController < ApplicationController
     if current_account.superuser? || current_account.admin? || current_account.superviseur? || current_account.gerant?
 
       @orders = Order.all
+    elsif current_account.client?
+      puts "CUSTOMER: #{current_account.accountable.inspect}"
+      @orders = Order.where(customer_id: current_account.accountable.id)
     else
       @orders = current_account.orders
     end

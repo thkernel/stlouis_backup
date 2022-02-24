@@ -9,7 +9,19 @@ class FidelityCardsController < ApplicationController
 
   # GET /fidelity_cards or /fidelity_cards.json
   def index
-    @fidelity_cards = FidelityCard.all
+    if current_account.client?
+
+      customer_fidelity_card = CustomerFidelityCard.find_by(customer_id: current_account.accountable.id)
+      
+      if  customer_fidelity_card.present?
+        @fidelity_cards = FidelityCard.where(id: customer_fidelity_card.fidelity_card_id)
+      else
+        @fidelity_cards = []
+      end
+
+    else
+      @fidelity_cards = FidelityCard.all
+    end
   end
 
   # GET /fidelity_cards/1 or /fidelity_cards/1.json

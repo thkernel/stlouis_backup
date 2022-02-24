@@ -123,12 +123,20 @@ class Account < ApplicationRecord
     end
   end
   
-    def guest?
+  def guest?
     if self.role.name == "guest"
       true 
     else
       false
     end
+  end
+
+  def client?
+    if self.role.name == "Client"
+      true 
+    else
+      false
     end
+  end
   
 end
