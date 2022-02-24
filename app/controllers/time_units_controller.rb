@@ -1,4 +1,5 @@
 class TimeUnitsController < ApplicationController
+  load_and_authorize_resource :except => [:delete]
   before_action :authenticate_account!
   layout "dashboard"
 

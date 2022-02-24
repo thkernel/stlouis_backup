@@ -741,6 +741,13 @@ span.tag-item{
     border-radius: 10px;
 }
 
+.order_payment_method_gratuite{
+    background-color: green;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
 .order_payment_status_impayee{
     background-color: orange;
     color: white;
@@ -998,4 +1005,20 @@ html, body {
 }
 a.product-name{
     font-weight: 700 !important;
+}
+
+#new-order fieldset legend{
+    border: 1px solid #ced4da;
+    margin-bottom: 5px !important;
+    font-size: 12pt !important;
+    width: auto;
+    padding: 3px;
+    background-color: #0866C6;
+    color: white;
+}
+
+#new-order fieldset{
+    border: 1px solid #ced4da;
+    padding: 15px;
+    margin-bottom: 10px;
 }

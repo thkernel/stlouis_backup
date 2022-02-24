@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: public.unities
+# Table name: unities
 #
 #  id           :bigint           not null, primary key
 #  uid          :string

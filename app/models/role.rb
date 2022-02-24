@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: public.roles
+# Table name: roles
 #
 #  id          :bigint           not null, primary key
 #  uid         :string

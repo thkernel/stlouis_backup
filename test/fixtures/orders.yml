@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: public.orders
+# Table name: orders
 #
 #  id             :bigint           not null, primary key
 #  uid            :string
@@ -17,6 +17,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  vip_space      :boolean          default(FALSE)
+#  social_case    :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

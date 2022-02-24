@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: public.api_keys
+# Table name: api_keys
 #
 #  id           :bigint           not null, primary key
 #  access_token :string

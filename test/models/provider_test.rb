@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: public.providers
+# Table name: providers
 #
 #  id           :bigint           not null, primary key
 #  uid          :string
@@ -15,7 +15,6 @@
 #  street       :string
 #  po_box       :string
 #  zip_code     :string
-#  email        :string
 #  description  :string
 #  status       :string
 #  account_id   :bigint

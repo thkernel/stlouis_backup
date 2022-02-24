@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: public.stock_entries
+# Table name: stock_entries
 #
 #  id          :bigint           not null, primary key
 #  uid         :string

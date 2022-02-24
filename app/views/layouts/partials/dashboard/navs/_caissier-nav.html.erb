@@ -42,7 +42,7 @@
 
               <% if can? :read, CustomerFidelityCard %>
                 <li class="sub-item">
-                    <%= link_to  "Ventes", customer_fidelity_cards_path, class: "sub-link #{current? "active", customer_fidelity_cards_path}" %>
+                    <%= link_to  "Attributions", customer_fidelity_cards_path, class: "sub-link #{current? "active", customer_fidelity_cards_path}" %>
                 </li>
               <% end %>
               <% if can? :read, RechargeFidelityCard %>

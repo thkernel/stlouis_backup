@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: public.product_categories
+# Table name: product_categories
 #
 #  id          :bigint           not null, primary key
 #  uid         :string

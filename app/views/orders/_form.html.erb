@@ -70,7 +70,11 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-          <%= link_to_add_association raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter un plat'), form, :order_items, class: 'btn btn-primary', data: { association_insertion_node: '.items', association_insertion_method: :append } %>
+          <% if shop_tenant? %>
+            <%= link_to_add_association raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter une boisson'), form, :order_items, class: 'btn btn-primary', data: { association_insertion_node: '.items', association_insertion_method: :append } %>
+            <% else %>
+              <%= link_to_add_association raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter un plat'), form, :order_items, class: 'btn btn-primary', data: { association_insertion_node: '.items', association_insertion_method: :append } %>
+            <% end %>
         </div>
       </div>
     </div>
@@ -120,7 +124,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="form-group pull-right">
-        <%= form.submit class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1" %>
+        <%= form.submit "VALIDER LA COMMANDE", class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1" %>
       </div>
     </div>
   </div>

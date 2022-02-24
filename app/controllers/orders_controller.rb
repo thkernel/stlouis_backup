@@ -133,8 +133,15 @@ def complete_order
   end
   def paynow
     order = Order.find_by(uid: params[:uid])
+    
+    if order.social_case == true
+      payment_method = "Gratuite"
+    else
+      payment_method = "Espèce"
+    end
+
     respond_to do |format|
-      if order.update_columns(paid: "Payée", status: "Confirmée", payment_method: "Espèce" , account_id: current_account.id)
+      if order.update_columns(paid: "Payée", status: "Confirmée", payment_method: payment_method , account_id: current_account.id)
 
         format.html { redirect_to orders_path, notice: "Commande payée avec succès." }
         format.json { render :show, status: :created, location: @order }

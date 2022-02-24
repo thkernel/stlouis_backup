@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: public.features
+# Table name: features
 #
 #  id            :bigint           not null, primary key
 #  uid           :string

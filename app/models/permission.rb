@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: public.permissions
+# Table name: permissions
 #
 #  id         :bigint           not null, primary key
 #  uid        :string
