@@ -7,6 +7,14 @@ end
 
 Rails.application.routes.draw do
 
+  resources :technical_sheet_items do 
+    get "delete"
+  end
+
+  resources :technical_sheets, path: "technical-sheets" do 
+    get "delete"
+  end
+
   get "features/send-sms" => "features#sms_send", as: :sms_send
   resources :customer_social_cases, path: "customer-social-cases" do   
     get "delete"

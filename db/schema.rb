@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_16_140607) do
+ActiveRecord::Schema.define(version: 2022_02_26_190114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_140607) do
   create_table "customer_social_cases", force: :cascade do |t|
     t.string "uid"
     t.bigint "customer_id"
-    t.integer "dish_number", default: 0
+    t.integer "dish_number"
     t.bigint "time_unit_id"
     t.string "status"
     t.bigint "account_id"
@@ -265,7 +265,6 @@ ActiveRecord::Schema.define(version: 2022_02_16_140607) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "product_id"
-    t.float "discount", default: 0.0
     t.index ["food_id"], name: "index_order_items_on_food_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
@@ -379,7 +378,6 @@ ActiveRecord::Schema.define(version: 2022_02_16_140607) do
     t.string "street"
     t.string "po_box"
     t.string "zip_code"
-    t.string "email"
     t.string "description"
     t.string "status"
     t.bigint "account_id"
@@ -465,6 +463,43 @@ ActiveRecord::Schema.define(version: 2022_02_16_140607) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_tables_on_account_id"
+  end
+
+  create_table "technical_sheet_items", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "technical_sheet_id"
+    t.bigint "product_id"
+    t.bigint "unity_id"
+    t.float "unity_purchase_cost_excl_tax", default: 0.0
+    t.float "quantity", default: 0.0
+    t.float "cost_price_excl_tax", default: 0.0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_technical_sheet_items_on_product_id"
+    t.index ["technical_sheet_id"], name: "index_technical_sheet_items_on_technical_sheet_id"
+    t.index ["unity_id"], name: "index_technical_sheet_items_on_unity_id"
+  end
+
+  create_table "technical_sheets", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "food_id"
+    t.float "portion_number", default: 0.0
+    t.float "sale_price_incl_vat", default: 0.0
+    t.float "vat_rate", default: 0.0
+    t.float "total_cost_price_excl_tax", default: 0.0
+    t.float "produced_portion_unit_cost_price_excl_tax", default: 0.0
+    t.float "unsold_average_percentage", default: 0.0
+    t.float "sold_portion_unit_cost_price_excl_vat", default: 0.0
+    t.float "selling_price_excl_tax", default: 0.0
+    t.float "gross_margin", default: 0.0
+    t.float "margin_rate", default: 0.0
+    t.float "margin_coefficient", default: 0.0
+    t.string "status"
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_technical_sheets_on_account_id"
+    t.index ["food_id"], name: "index_technical_sheets_on_food_id"
   end
 
   create_table "tenants", force: :cascade do |t|
@@ -566,6 +601,11 @@ ActiveRecord::Schema.define(version: 2022_02_16_140607) do
   add_foreign_key "stock_exits", "products"
   add_foreign_key "stock_exits", "unities"
   add_foreign_key "tables", "accounts"
+  add_foreign_key "technical_sheet_items", "products"
+  add_foreign_key "technical_sheet_items", "technical_sheets"
+  add_foreign_key "technical_sheet_items", "unities"
+  add_foreign_key "technical_sheets", "accounts"
+  add_foreign_key "technical_sheets", "foods"
   add_foreign_key "tenants", "accounts"
   add_foreign_key "time_units", "accounts"
   add_foreign_key "unities", "accounts"
